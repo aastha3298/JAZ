@@ -1,0 +1,58 @@
+﻿@model JAZ.Models.Order_Transactions
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order_Transactions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delivery_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delivery_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Total)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Transaction_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

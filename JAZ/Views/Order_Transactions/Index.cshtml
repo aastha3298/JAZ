@@ -1,0 +1,57 @@
+﻿@model IEnumerable<JAZ.Models.Order_Transactions>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transaction_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Delivery_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transaction_Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Transaction_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Delivery_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Transaction_Total)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Transaction_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Transaction_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Transaction_ID })
+        </td>
+    </tr>
+}
+
+</table>
