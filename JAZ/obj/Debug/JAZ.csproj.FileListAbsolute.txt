@@ -82,3 +82,4 @@ C:\Users\Dhillon\source\repos\JAZ\bin\Microsoft.CodeDom.Providers.DotNetCompiler
 C:\Users\Dhillon\source\repos\JAZ\obj\Debug\JAZ.csproj.CopyComplete
 C:\Users\Dhillon\source\repos\JAZ\obj\Debug\JAZ.dll
 C:\Users\Dhillon\source\repos\JAZ\obj\Debug\JAZ.pdb
+C:\Users\Dhillon\source\repos\JAZ\obj\Debug\JAZ.csprojAssemblyReference.cache

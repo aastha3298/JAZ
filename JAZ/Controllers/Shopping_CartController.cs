@@ -133,5 +133,24 @@ namespace JAZ.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost, ActionName("EditCart")]
+        public async Task<ActionResult> EditCart(int id, int qty)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Shopping_Cart cart = await db.Shopping_Cart.FindAsync(id);
+            cart.Product_Quantity = qty;
+            if (ModelState.IsValid)
+            {
+                db.Entry(cart).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
     }
 }

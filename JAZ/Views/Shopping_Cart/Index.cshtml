@@ -4,42 +4,57 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>My Shopping Bag</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.Product_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Product_Quantity)
-        </th>
-        <th></th>
-    </tr>
+
+
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product.Product_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product_Quantity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+
+        <img src="@item.Product.Product_Imgage_Source" style="height:50px; width:50px" />
+       <br />
+   
+        @Html.DisplayFor(modelItem => item.Product.Product_Name)
+    <br />
+    <div style="text-align:right">
+        @Html.DisplayFor(modelItem => item.Product.Product_Price)
+    </div>
+      <br/>
+        <select name="Agency" id="qtyInCart" onchange="SaveCart(this,@item.ID);">
+            <option value="@item.Product_Quantity" selected="selected"> @item.Product_Quantity</option>
+            @for (var j = 0; j <= 10; j++)
+            {
+                if (j != item.Product_Quantity)
+                {
+                    <option value=@j>@j</option>
 }
 
-</table>
+            }
+        </select>
+
+       
+    
+        @Html.ActionLink("Remove", "Delete", new { id = item.ID })
+  
+}
+
+
+<script>
+    function SaveCart(qty,id)
+{
+    $.ajax({
+        type: "POST",
+      url: '/Shopping_Cart/EditCart',
+       data: {
+           id: id,
+           qty: qty.value
+       }
+   }).done(function() {
+        location.reload(true);  
+   });
+   
+   
+    }
+
+
+</script>
