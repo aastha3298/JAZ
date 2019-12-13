@@ -22,6 +22,13 @@ namespace JAZ.Controllers
             return View(await shopping_Cart.ToListAsync());
         }
 
+        // GET: Summary
+        public async Task<ActionResult> Summary()
+        {
+            var shopping_Cart = db.Shopping_Cart.Include(s => s.Product).Include(s => s.User);
+            return View(await shopping_Cart.ToListAsync());
+        }
+
         // GET: Shopping_Cart/Details/5
         public async Task<ActionResult> Details(int? id)
         {

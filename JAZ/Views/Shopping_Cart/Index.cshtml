@@ -3,41 +3,61 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .test{
+        color:red;
+        font-weight:bold;
+    }
+</style>
+<center><h2><span class="test">Shopping Bag</span>------------Summary------------Address-----------Payment</h2></center>
 
-<h2>My Shopping Bag</h2>
-
-
+<br />
+<br />
 
 
 @foreach (var item in Model) {
 
-        <img src="@item.Product.Product_Imgage_Source" style="height:50px; width:50px" />
-       <br />
-   
-        @Html.DisplayFor(modelItem => item.Product.Product_Name)
-    <br />
-    <div style="text-align:right">
-        @Html.DisplayFor(modelItem => item.Product.Product_Price)
-    </div>
-      <br/>
-        <select name="Agency" id="qtyInCart" onchange="SaveCart(this,@item.ID);">
+            <img src="@item.Product.Product_Imgage_Source" style="height:60px; width:60px" />
+            <br />
+            @Html.DisplayFor(modelItem => item.Product.Product_Name)
+                    
+            <div>
+            Quantity:
+            <select name="Agency" id="qtyInCart" onchange="SaveCart(this,@item.ID);">
             <option value="@item.Product_Quantity" selected="selected"> @item.Product_Quantity</option>
             @for (var j = 0; j <= 10; j++)
             {
                 if (j != item.Product_Quantity)
                 {
                     <option value=@j>@j</option>
-}
+                }
 
             }
-        </select>
-
-       
+            </select> 
+            
+            </div>
+            <div style="text-align:right">
+               
+                @{ decimal? Totprice = 0;
+                    Totprice = item.Product.Product_Price * item.Product_Quantity;
+                }
+                CAD
+                @Totprice
+                
+            </div>
     
-        @Html.ActionLink("Remove", "Delete", new { id = item.ID })
-  
+            @Html.ActionLink("Remove", "Delete", new { id = item.ID })
+
+            
+            
 }
 
+<br />
+<br />
+<button onclick="window.location.href = 'https://w3docs.com';">Add More</button>
+<br />
+<br />
+<button onclick="window.location.href = 'https://w3docs.com';">Place Order</button>
 
 <script>
     function SaveCart(qty,id)
