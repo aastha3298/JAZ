@@ -1,0 +1,75 @@
+﻿@model IEnumerable<JAZ.Models.Shopping_Cart>
+
+@{
+    ViewBag.Title = "Summary";
+}
+<style>
+
+    .test {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+<center><h2>Shopping Bag------------<span class="test">Summary</span>------------Address-----------Payment</h2></center>
+
+<br />
+<br />
+@{ decimal? Total = 0;
+    }
+
+@foreach (var item in Model)
+{
+
+    @Html.DisplayFor(modelItem => item.Product.Product_Name)
+
+    <div>
+        Quantity:
+        @Html.DisplayFor(modelItem => item.Product_Quantity)
+
+    </div>
+
+    <div style="text-align:center">
+        CAD
+        @{ decimal? Totprice = 0;
+            Totprice = item.Product.Product_Price * item.Product_Quantity;
+        }
+        @Totprice
+        @{
+            Total += Totprice;
+        }
+    </div>
+    
+
+  }
+<br />
+<br />
+
+<div style="text-align:center">
+    Total = CAD
+    @Total
+</div>
+
+<br />
+
+<br />
+<br />
+<button onclick="window.location.href = 'https://w3docs.com';">Continue</button>
+
+<script>
+    function SaveCart(qty, id) {
+        $.ajax({
+            type: "POST",
+            url: '/Shopping_Cart/EditCart',
+            data: {
+                id: id,
+                qty: qty.value
+            }
+        }).done(function () {
+            location.reload(true);
+        });
+
+
+    }
+
+
+</script>

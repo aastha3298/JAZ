@@ -233,6 +233,8 @@
     <Content Include="Views\Shopping_Cart\Details.cshtml" />
     <Content Include="Views\Shopping_Cart\Edit.cshtml" />
     <Content Include="Views\Shopping_Cart\Index.cshtml" />
+    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Shopping_Cart\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

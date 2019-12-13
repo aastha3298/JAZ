@@ -22,6 +22,13 @@ namespace JAZ.Controllers
             return View(await shopping_Cart.ToListAsync());
         }
 
+        // GET: Summary
+        public async Task<ActionResult> Summary()
+        {
+            var shopping_Cart = db.Shopping_Cart.Include(s => s.Product).Include(s => s.User);
+            return View(await shopping_Cart.ToListAsync());
+        }
+
         // GET: Shopping_Cart/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -132,6 +139,25 @@ namespace JAZ.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost, ActionName("EditCart")]
+        public async Task<ActionResult> EditCart(int id, int qty)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Shopping_Cart cart = await db.Shopping_Cart.FindAsync(id);
+            cart.Product_Quantity = qty;
+            if (ModelState.IsValid)
+            {
+                db.Entry(cart).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
     }
 }
