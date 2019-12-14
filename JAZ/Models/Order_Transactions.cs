@@ -10,6 +10,12 @@ namespace JAZ.Models
     {
         [Key]
         public int Transaction_ID { get; set; }
+        public Int32 CreditCardNo { get; set; }
+        public int CVV { get; set;}
+        public int ExpiryDate { get; set; }
+        public int ExpiryMonth { get; set; }
+
+        public string cardType { get; set; }
 
         public int? User_ID { get; set; }
 

@@ -21,14 +21,19 @@ namespace JAZ.Controllers
             var order_Transactions = db.Order_Transactions.Include(o => o.User);
             return View(await order_Transactions.ToListAsync());
         }
+        [Authorize]
 
         // GET: billing
-        public async Task<ActionResult> billing()
+        public ActionResult billing()
+        {
+            var order_Transactions = db.Order_Transactions.Where(x=>x.User.Email.Equals(User.Identity.Name)).FirstOrDefault();
+            return View(order_Transactions);
+        }
+        public ActionResult Confirmation()
         {
             var order_Transactions = db.Order_Transactions.Include(o => o.User);
-            return View(await order_Transactions.ToListAsync());
+            return View("Index", order_Transactions.ToListAsync());
         }
-
         // GET: Order_Transactions/Details/5
         public async Task<ActionResult> Details(int? id)
         {

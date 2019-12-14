@@ -1,70 +1,272 @@
-﻿@model IEnumerable<JAZ.Models.Order_Transactions>
-
+﻿
+@model JAZ.Models.Order_Transactions
 @{
-    ViewBag.Title = "billing";
+    ViewBag.Title = "Transaction";
 }
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Payment Information</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="~/Content/Style.css">
-    <script src="~/Scripts/Script.js"></script>
-    <script>src = ""</script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<style>
+    <style>
+        .transparent {
+            opacity: 0.2;
+        }
 
-    .test {
-        color: red;
-        font-weight: bold;
-    }
-</style>
-<center><h3><a href="">Shopping Bag</a>-----------------<a href="">Summary</a>-------------------<span class="test">Payment</span></h3></center>
+        .inpExp {
+            width: 40%;
+            display: inline-block !important;
+        }
 
-<br />
-<br />
-<body>
-    <div class="container-fluid">
-        <div class="creditCardForm">
-            <div class="heading">
-                <h2>Credit Card Details</h2>
-            </div>
-            <div class="payment">
-                <form>
-                    Credit Card:
-                    <input type="radio" name="cardtype" value="male"> Visa
-                    <input type="radio" name="cardtype" value="female"> Master
-                    <input type="radio" name="cardtype" value="other"> AmericanExpress
-                    
-                    <br />
-                    <div class="form-group" id="card-number-field">
-                        Card Number: <input type="text" pattern=".{16,}" maxlength="16" class="form-control" id="cardNumber" required>
-                    </div>
-                                      
-                    <div class="form-group owner">
-                        Card Holder Name: <input type="text" class="form-control" id="owner" required>
-                    </div>
-                    
-                    <div class="form-group" id="expiration-date">
-                        Expiration Date: <input type="date" />             
-                      
-                    </div>
+        #credit_cards img {
+            width: 50px;
+        }
 
-                    <div class="form-group CVV">
-                        CVV:<input type="text" pattern=".{3,}" maxlength="3" class="form-control" id="cvv" required>
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+            .button:hover, .button:active, .button:focus {
+                color: #fff;
+                text-decoration: none;
+            }
+
+        .lbl {
+            font-size: 15px;
+            font-family: Poppins,sans-serif;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+    </style>
+    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg">
+        <strong>Please Enter data in all fields.</strong>.
+    </div>
+    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg2">
+        <strong> Enter valid cardholder name</strong>
+    </div>
+    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg3">
+        <strong>Enter valid month between 01 to 12</strong>
+    </div>
+    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg4">
+        <strong> Enter valid year between 2019 to 2031</strong>
+    </div>
+    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg5">
+        <strong>Enter valid card number</strong>
+    </div>
+    <div id="payModule">
+        <div class="section section-lg">
+            <div class="container" style="padding-left: 0px;padding-right: 0px;width: 45%;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow-soft border p-4">
+                            <div class="row">
+                                <div class="col-md-12"><h3>Total Amount: </h3></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="name" class="lbl">Cardholder Name</label>
+                                        @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Cardholder name" } })
+                                        @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="card_number" class="lbl">Card Number</label>
+                                        @Html.EditorFor(model => model.CreditCardNo, new { htmlAttributes = new { @class = "form-control", @pattern = "[0-9.]+", placeholder = "Card number" } })
+                                        @Html.ValidationMessageFor(model => model.CreditCardNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cvv" class="lbl">Security Code</label>
+                                        @Html.EditorFor(model => model.CVV, new { htmlAttributes = new { @class = "form-control", placeholder = "Security Code" } })
+                                        @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="exp" style="display:block;" class="lbl">Expiration Date</label>
+                                    @Html.EditorFor(model => model.ExpiryMonth, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "MM" } })
+                                    @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "YYYY" } })
+                                    <div>
+                                        @Html.ValidationMessageFor(model => model.ExpiryMonth, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6" id="credit_cards" style="line-height: 4;text-align: right;">
+                                    <img src="~/images/visa.jpg" id="visa">
+                                    <img src="~/images/mastercard.jpg" id="master">
+                                    <img src="~/images/amex.jpg" id="amex">
+                                </div>
+                            </div>
+
+                            <div style="height:10px;">&nbsp;</div>
+                            <div style="display: flex; justify-content: flex-end">
+                                <a href="#" class="button" id="btnMakePayment" onclick="confirmPayment();">Proceed To Payment</a>
+                            </div>
+                        </div>
                     </div>
-                    <br />
-                    <div class="form-group" id="pay-now">
-                        <button type="submit" class="btn btn-default" id="paynow">Pay Now</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+
+    <div id="orderConfirmation"></div>
+}
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    var cardType = "";
+    function ccValidate(ccn) {
+        var regex_visa = new RegExp("^(4)");
+        var regex_master = new RegExp("^(51|52|53|54|55)");
+        var regex_amex = new RegExp("^(34|37)");
+
+
+        if (regex_visa.test(ccn)) {
+            cardType = "Visa";
+            $("#master").addClass("transparent");
+            $("#amex").addClass("transparent");
+            $("#visa").removeClass("transparent");
+        }
+        else if (regex_master.test(ccn)) {
+            cardType = "Master";
+            $("#master").removeClass("transparent");
+            $("#amex").addClass("transparent");
+            $("#visa").addClass("transparent");
+        }
+        else if (regex_amex.test(ccn)) {
+            cardType = "American Express";
+            $("#master").addClass("transparent");
+            $("#amex").removeClass("transparent");
+            $("#visa").addClass("transparent");
+        }
+        else {
+            $("#master").addClass("transparent");
+            $("#amex").addClass("transparent");
+            $("#visa").addClass("transparent");
+        }
+        return cardType;
+    }
+
+    $(function () {
+        $("#card_number").change(function () {
+            ccValidate($(this).val());
+        });
+        $("#card_number").keyup(function () {
+            ccValidate($(this).val());
+        });
+
+        document.getElementById('card_number').oninput = function () {
+            this.value = cc_format(this.value)
+        }
+        $("#card_number").keypress(function (e) {
+            if ((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0)) {
+                return false;
+            }
+            return true;
+        });
+    });
+
+
+    function cc_format(value) {
+        var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+        var matches = v.match(/\d{4,16}/g);
+        var match = matches && matches[0] || ''
+        var parts = []
+        for (i = 0, len = match.length; i < len; i += 4) {
+            parts.push(match.substring(i, i + 4))
+        }
+        if (parts.length) {
+            return parts.join(' ')
+        } else {
+            return value
+        }
+    }
+
+    function confirmPayment() {
+        var errorMsg = document.getElementById("errorMsg");
+        var errorMsg2 = document.getElementById("errorMsg2");
+        var errorMsg3 = document.getElementById("errorMsg3");
+        var errorMsg4 = document.getElementById("errorMsg4");
+        var errorMsg5 = document.getElementById("errorMsg5");
+        var name = $("#name").val();
+        var ccNum = $("#card_number").val();
+        var month = $("#expiry_month").val();
+        var yr = $("#expiry_year").val();
+        var cvv = $("#cvv").val();
+
+        //var cardType = ccValidate(ccNum);
+        ccNum = parseInt(ccNum);
+        var nameRegex = new RegExp("([a-zA-Z\d]+[\w\d]*|)[a-zA-Z]+[\w\d.]*");
+        var invalidData = false;
+
+        if (name == "" || ccNum == "" || isNaN(ccNum) || month == "" || yr == "" || cvv == "") {
+            invalidData = true;
+            errorMsg.style.display = "block";
+            $('#errorMsg').delay(2000).fadeOut('slow');
+
+        }
+        else if (!nameRegex.test(name)) {
+            invalidData = true;
+            errorMsg2.style.display = "block";
+            $('#errorMsg2').delay(2000).fadeOut('slow');
+
+        }
+        else if (month.length != 2 || parseInt(month) < 1 || parseInt(month) > 12) {
+            invalidData = true;
+            errorMsg3.style.display = "block";
+            $('#errorMsg3').delay(2000).fadeOut('slow');
+
+        }
+        else if (yr.length != 4 || parseInt(yr) < 2019 || parseInt(yr) > 2031) {
+            invalidData = true;
+            errorMsg4.style.display = "block";
+            $('#errorMsg4').delay(2000).fadeOut('slow');
+
+        }
+        //else if (cardType == "" || ((cardType == "Visa" || cardType == "Master") && ccNum.length != 16) || (cardType == "American Express" && ccNum.length != 15)) {
+        //    alert(cardType);
+        //    invalidData = true;
+        //    errorMsg5.style.display = "block";
+        //    $('#errorMsg5').delay(2000).fadeOut('slow');
+
+        //}
+
+        if (!invalidData) {
+            $.ajax({
+                type: "POST",
+                url: '/Orders/CreateOrder',
+                data: {
+                    cardNum: $("#card_number").val().replace(/\s/g, '')
+                }
+            }).done(function (dt) {
+                $("#payModule").hide();
+                $('#orderConfirmation').empty();
+                $('#orderConfirmation').html(dt);
+            });
+        }
+    }
+</script>
+
+
+

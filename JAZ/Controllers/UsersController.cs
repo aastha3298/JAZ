@@ -64,6 +64,7 @@ namespace JAZ.Controllers
             return View(user);
         }
 
+        [Authorize]
         // GET: Users/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {

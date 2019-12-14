@@ -82,6 +82,13 @@ namespace JAZ.Controllers
 
 
 
+        [Authorize]
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            System.Web.Security.FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Accounts");
+        }
 
         //Login 
         [HttpGet]
@@ -140,14 +147,7 @@ namespace JAZ.Controllers
         }
 
         //Logout
-        [Authorize]
-        [HttpPost]
-        public ActionResult Logout()
-        {
-            System.Web.Security.FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Accounts");
-        }
-
+       
         [NonAction]
         public bool IsEmailExist(string emailID)
         {

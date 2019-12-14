@@ -16,13 +16,18 @@ namespace JAZ.Controllers
         private JazModel db = new JazModel();
 
         // GET: Shopping_Cart
+        [Authorize]
         public async Task<ActionResult> Index()
         {
-            var shopping_Cart = db.Shopping_Cart.Include(s => s.Product).Include(s => s.User);
+           
+                var list= db.Shopping_Cart.AsEnumerable().Where(x => x.User.Email.Equals(User.Identity.Name));
+            ViewBag.data = list.Sum(x => x.Product.Product_Price);
+           var shopping_Cart = db.Shopping_Cart.Include(s => s.Product).Include(s => s.User);
             return View(await shopping_Cart.ToListAsync());
         }
 
         // GET: Summary
+        [Authorize]
         public async Task<ActionResult> Summary()
         {
             var shopping_Cart = db.Shopping_Cart.Include(s => s.Product).Include(s => s.User);
@@ -114,11 +119,14 @@ namespace JAZ.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Shopping_Cart shopping_Cart = await db.Shopping_Cart.FindAsync(id);
+            db.Shopping_Cart.Remove(shopping_Cart);
+            await db.SaveChangesAsync();
             if (shopping_Cart == null)
             {
                 return HttpNotFound();
             }
-            return View(shopping_Cart);
+            var shopping_Cart1 = db.Shopping_Cart.AsEnumerable().Where(x=>x.User.Email.Equals(User.Identity.Name));
+            return View("Index",shopping_Cart1);
         }
 
         // POST: Shopping_Cart/Delete/5
@@ -129,7 +137,7 @@ namespace JAZ.Controllers
             Shopping_Cart shopping_Cart = await db.Shopping_Cart.FindAsync(id);
             db.Shopping_Cart.Remove(shopping_Cart);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index",shopping_Cart);
         }
 
         protected override void Dispose(bool disposing)
