@@ -9,7 +9,7 @@
         font-weight:bold;
     }
 </style>
-<center><h2><span class="test">Shopping Bag</span>------------Summary------------Address-----------Payment</h2></center>
+<center><h3><span class="test">Shopping Bag</span>--------------------<a href="">Summary</a>-----------------------<a href="">Payment</a></h3></center>
 
 <br />
 <br />
@@ -46,9 +46,7 @@
                 
             </div>
     
-            @Html.ActionLink("Remove", "Delete", new { id = item.ID })
-
-            
+            @Html.ActionLink("Remove", "Delete", new { id = item.ID })          
             
 }
 
@@ -57,24 +55,24 @@
 <button onclick="window.location.href = 'https://w3docs.com';">Add More</button>
 <br />
 <br />
-<button onclick="window.location.href = 'https://w3docs.com';">Place Order</button>
-
-<script>
-    function SaveCart(qty,id)
-{
-    $.ajax({
-        type: "POST",
-      url: '/Shopping_Cart/EditCart',
-       data: {
-           id: id,
-           qty: qty.value
-       }
-   }).done(function() {
-        location.reload(true);  
-   });
-   
-   
-    }
+<div style="text-align:center">
+    <button onclick="window.location.href = 'https://w3docs.com';" style="color: crimson">Place Order</button>
+</div>
+    <script>
+        function SaveCart(qty, id) {
+            $.ajax({
+                type: "POST",
+                url: '/Shopping_Cart/EditCart',
+                data: {
+                    id: id,
+                    qty: qty.value
+                }
+            }).done(function () {
+                location.reload(true);
+            });
 
 
-</script>
+        }
+
+
+    </script>
