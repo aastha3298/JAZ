@@ -75,7 +75,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name" class="lbl">Cardholder Name</label>
+                                        <label for="name" class="lbl">Cardholder Email</label>
                                         @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Cardholder name" } })
                                         @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
                                     </div>
@@ -108,9 +108,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6" id="credit_cards" style="line-height: 4;text-align: right;">
-                                    <img src="~/images/visa.jpg" id="visa">
-                                    <img src="~/images/mastercard.jpg" id="master">
-                                    <img src="~/images/amex.jpg" id="amex">
+                                    <img src="~/Helpers/visa.jpg" id="visa">
+                                    <img src="~/Helpers/mastercard.jpg" id="master">
+                                    <img src="~/Helpers/amex.jpg" id="amex">
                                 </div>
                             </div>
 

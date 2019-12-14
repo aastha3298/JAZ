@@ -153,6 +153,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\JazModel.cs" />
@@ -173,6 +174,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Helpers\amex.jpg" />
+    <Content Include="Helpers\mastercard.jpg" />
+    <Content Include="Helpers\recycling-bin-vector-delete-icon-png-black-11563002079w1isxqyyiv.png" />
+    <Content Include="Helpers\visa.jpg" />
     <Content Include="images\amex.jpg" />
     <Content Include="images\button bowl.jpg" />
     <Content Include="images\Button canvas.jpg" />
