@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+    <html>
+    <head>
+        <title>JAZ</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/StyleSheet/StyleSheet.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+        <style>
+            .w3-sidebar a {
+                font-family: "Roboto", sans-serif;
+            }
+
+            body, h1, h2, h3, h4, h5, h6, .w3-wide {
+                font-family: "Montserrat", sans-serif;
+            }
+        </style>
+    </head>
+    <body class="w3-content">
+        <div class="w3-container w3-display-container w3-padding-16" style="background-color:Black">
+            <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+            <h2 class="w3-wide w3-text-white w3-left"><b>JAZ</b></h2>
+
+            <div class="navbar-collapse collapse" style="position:center">
+                <ul class="nav navbar-nav">
+                    <li class="button w3-right button-secondary pure-button"> @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "linktext  button-secondary pure-button", @style = "text-decoration: none" }) </li>
+                    <li class="button w3-right button-secondary pure-button" >@Html.ActionLink("Register", "Registration", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "linktext button-secondary pure-button", @style = "text-decoration: none" })</li>
+                    <li class="button w3-right button-secondary pure-button" >@Html.ActionLink("Log in", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "linktext button-secondary pure-button", @style = "text-decoration: none" })</li>
+
+                </ul>
+               
+            </div>
+        </div>
+    
+        <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+        <script>
+
+            function w3_open() {
+                document.getElementById("mySidebar").style.display = "block";
+                document.getElementById("myOverlay").style.display = "block";
+            }
+
+            function w3_close() {
+                document.getElementById("mySidebar").style.display = "none";
+                document.getElementById("myOverlay").style.display = "none";
+            }
+
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,44 @@
+﻿<script src="~/Scripts/vertical.js"></script>
+<link href="~/Content/VerticalMenu.css" rel="stylesheet" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="navbar-header">
+    
+    @if (Request.IsAuthenticated)
+                {
+                    string value = "Cart" + "("+(int)ViewBag.Data+")";
+
+                    using (Html.BeginForm("Logout", "Accounts", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <ul class="nav navbar-nav">
+
+                <li class="active" style="padding-top:4px;margin-left:5px;margin-right:3px">@Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "linktext button-secondary pure-button", @style = "text-decoration: none" })</li>
+
+
+                <li class="active" style="padding-top:4px;margin-left:5px;margin-right:3px">
+                    @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Accounts", routeValues: null, htmlAttributes: new { title = "Manage", @class = "linktext button-secondary pure-button", @style = "text-decoration: none" })
+                </li>
+
+                <li class="active" style="padding-top:4px;margin-left:5px;margin-right:3px">
+                    @Html.ActionLink(value, "Myorder", "AddToCart", routeValues: null, htmlAttributes: new { @class = "linktext button-secondary pure-button", @style = "text-decoration: none" })
+                </li>
+
+
+                <li class="active" style="padding-top:4px"><a class="pure-button pure-button-active w3-right linktext" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        }
+
+    }
+    else
+    {
+        <ul class="nav navbar-nav">
+            <li class="active" style="padding-top:4px;margin-left:5px;margin-right:3px">@Html.ActionLink("Register", "Registration", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "linktext button-secondary pure-button", @style = "text-decoration: none" })</li>
+            <li class="active" style="padding-top:4px;margin-left:5px;margin-right:3px">@Html.ActionLink("Log in", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "linktext button-secondary pure-button", @style = "text-decoration: none" })</li>
+        </ul>
+        <br />
+        <br />
+    }
+</div>

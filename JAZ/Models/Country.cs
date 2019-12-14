@@ -16,7 +16,8 @@ namespace JAZ.Models
 
         [Key]
         public int Country_Code { get; set; }
-
+        [Required(ErrorMessage = "Field is mandatory")]
+        [RegularExpression(@"^([a-zA-Z \.\&\'\-]+)$", ErrorMessage = "Field should not contain any special character or digit ")]
         [StringLength(255)]
         public string Country_Name { get; set; }
 

@@ -18,7 +18,7 @@ namespace JAZ.Controllers
         // GET: Users
         public async Task<ActionResult> Index()
         {
-            var users = db.Users.Include(u => u.City1).Include(u => u.Country1);
+            var users = db.Users.Include(u => u.City).Include(u => u.Country);
             return View(await users.ToListAsync());
         }
 

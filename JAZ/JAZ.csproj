@@ -141,6 +141,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Models\Product_Category.cs" />
     <Compile Include="Models\Shopping_Cart.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ViewModel\AccountViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +237,10 @@
     <Content Include="Views\Shopping_Cart\Index.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Shopping_Cart\Summary.cshtml" />
+    <Content Include="Views\Accounts\Login.cshtml" />
+    <Content Include="Views\Accounts\Registration.cshtml" />
+    <Content Include="Views\Shared\_LoginPageLayout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
