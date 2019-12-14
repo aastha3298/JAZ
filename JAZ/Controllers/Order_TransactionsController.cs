@@ -22,6 +22,13 @@ namespace JAZ.Controllers
             return View(await order_Transactions.ToListAsync());
         }
 
+        // GET: billing
+        public async Task<ActionResult> billing()
+        {
+            var order_Transactions = db.Order_Transactions.Include(o => o.User);
+            return View(await order_Transactions.ToListAsync());
+        }
+
         // GET: Order_Transactions/Details/5
         public async Task<ActionResult> Details(int? id)
         {
