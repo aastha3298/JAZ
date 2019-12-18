@@ -26,8 +26,25 @@ namespace JAZ.Controllers
         // GET: billing
         public ActionResult billing()
         {
+            var list = db.Shopping_Cart.AsEnumerable().Where(x => x.User.Email.Equals(User.Identity.Name));
+            ViewBag.data = list.Sum(x => x.Product.Product_Price);
             var order_Transactions = db.Order_Transactions.Where(x=>x.User.Email.Equals(User.Identity.Name)).FirstOrDefault();
             return View(order_Transactions);
+        }
+        public ActionResult TransactionSuccess(string creditcardno,string cvv)
+        {
+            Order_Transactions order_Transactions = new Order_Transactions();
+            order_Transactions.CreditCardNo=Convert.ToInt64(creditcardno);
+            order_Transactions.CVV = Convert.ToInt32(cvv);
+            order_Transactions.ExpiryDate = Convert.ToInt32("2019");
+            order_Transactions.ExpiryMonth = Convert.ToInt32("09");
+            order_Transactions.Transaction_Total = ViewBag.data;
+            order_Transactions.User_ID= db.Users.AsEnumerable().Where(x => x.Email.Equals(User.Identity.Name)).Select(x=>x.ID).FirstOrDefault();
+            order_Transactions.Transaction_Date = DateTime.Now;     
+            db.Order_Transactions.Add(order_Transactions);
+            db.SaveChanges();
+            var products = db.Products.Include(p => p.Product_Category1);
+            return View("~/Views/Home/Index.cshtml",products);
         }
         public ActionResult Confirmation()
         {

@@ -1,5 +1,4 @@
-﻿
-@model JAZ.Models.Order_Transactions
+﻿@model JAZ.Models.Order_Transactions
 @{
     ViewBag.Title = "Transaction";
 }
@@ -48,94 +47,98 @@
             line-height: 1.4;
         }
     </style>
-    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg">
-        <strong>Please Enter data in all fields.</strong>.
-    </div>
-    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg2">
-        <strong> Enter valid cardholder name</strong>
-    </div>
-    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg3">
-        <strong>Enter valid month between 01 to 12</strong>
-    </div>
-    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg4">
-        <strong> Enter valid year between 2019 to 2031</strong>
-    </div>
-    <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg5">
-        <strong>Enter valid card number</strong>
-    </div>
-    <div id="payModule">
-        <div class="section section-lg">
-            <div class="container" style="padding-left: 0px;padding-right: 0px;width: 45%;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card shadow-soft border p-4">
-                            <div class="row">
-                                <div class="col-md-12"><h3>Total Amount: </h3></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="name" class="lbl">Cardholder Email</label>
-                                        @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Cardholder name" } })
-                                        @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+    <div id="Pay">
+        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg">
+            <strong>Please Enter data in all fields.</strong>.
+        </div>
+        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg2">
+            <strong> Enter valid cardholder name</strong>
+        </div>
+        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg3">
+            <strong>Enter valid month between 01 to 12</strong>
+        </div>
+        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg4">
+            <strong> Enter valid year between 2019 to 2031</strong>
+        </div>
+        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg5">
+            <strong>Enter valid card number</strong>
+        </div>
+        <div id="payModule">
+            <div class="section section-lg">
+                <div class="container" style="padding-left: 0px;padding-right: 0px;width: 45%;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card shadow-soft border p-4">
+                                <div class="row">
+                                    <div class="col-md-12"><h3>Total Amount:</h3></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="name" class="lbl">Cardholder Name</label>
+                                            @Html.EditorFor(model => model.User.First_Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Cardholder name" } })
+                                            @Html.ValidationMessageFor(model => model.User.First_Name, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label for="card_number" class="lbl">Card Number</label>
-                                        @Html.EditorFor(model => model.CreditCardNo, new { htmlAttributes = new { @class = "form-control", @pattern = "[0-9.]+", placeholder = "Card number" } })
-                                        @Html.ValidationMessageFor(model => model.CreditCardNo, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="card_number" class="lbl">Card Number</label>
+                                            <input id="CreditCardNo">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="cvv" class="lbl">Security Code</label>
+                                            @Html.EditorFor(model => model.CVV, new { htmlAttributes = new { @class = "form-control", placeholder = "Security Code" } })
+                                            @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="cvv" class="lbl">Security Code</label>
-                                        @Html.EditorFor(model => model.CVV, new { htmlAttributes = new { @class = "form-control", placeholder = "Security Code" } })
-                                        @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="exp" style="display:block;" class="lbl">Expiration Date</label>
+                                        @Html.EditorFor(model => model.ExpiryMonth, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "MM" } })
+                                        @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "YYYY" } })
+                                        <div>
+                                            @Html.ValidationMessageFor(model => model.ExpiryMonth, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" id="credit_cards" style="line-height: 4;text-align: right;">
+                                        <img src="~/Helpers/visa.jpg" id="visa">
+                                        <img src="~/Helpers/mastercard.jpg" id="master">
+                                        <img src="~/Helpers/amex.jpg" id="amex">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="exp" style="display:block;" class="lbl">Expiration Date</label>
-                                    @Html.EditorFor(model => model.ExpiryMonth, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "MM" } })
-                                    @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "YYYY" } })
-                                    <div>
-                                        @Html.ValidationMessageFor(model => model.ExpiryMonth, "", new { @class = "text-danger" })
-                                        @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" id="credit_cards" style="line-height: 4;text-align: right;">
-                                    <img src="~/Helpers/visa.jpg" id="visa">
-                                    <img src="~/Helpers/mastercard.jpg" id="master">
-                                    <img src="~/Helpers/amex.jpg" id="amex">
-                                </div>
-                            </div>
 
-                            <div style="height:10px;">&nbsp;</div>
-                            <div style="display: flex; justify-content: flex-end">
-                                <a href="#" class="button" id="btnMakePayment" onclick="confirmPayment();">Proceed To Payment</a>
+                                <div style="height:10px;">&nbsp;</div>
+                                <div style="display: flex; justify-content: flex-end">
+                                    <a href="#" class="button" id="btnMakePayment" onclick="confirmPayment();">Proceed To Payment</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="orderConfirmation"></div>
+
+     
+    </div>
+    <div id="successful" style="display:none">
+        <h1>Order Recieved</h1>
     </div>
 
-    <div id="orderConfirmation"></div>
 }
-
-
-
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <script>
-    var cardType = "";
+   var cardType = "";
     function ccValidate(ccn) {
         var regex_visa = new RegExp("^(4)");
         var regex_master = new RegExp("^(51|52|53|54|55)");
@@ -176,10 +179,10 @@
             ccValidate($(this).val());
         });
 
-        document.getElementById('card_number').oninput = function () {
+        document.getElementById('CreditCardNo').oninput = function () {
             this.value = cc_format(this.value)
         }
-        $("#card_number").keypress(function (e) {
+        $("#CreditCardNo").keypress(function (e) {
             if ((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0)) {
                 return false;
             }
@@ -209,11 +212,11 @@
         var errorMsg3 = document.getElementById("errorMsg3");
         var errorMsg4 = document.getElementById("errorMsg4");
         var errorMsg5 = document.getElementById("errorMsg5");
-        var name = $("#name").val();
-        var ccNum = $("#card_number").val();
-        var month = $("#expiry_month").val();
-        var yr = $("#expiry_year").val();
-        var cvv = $("#cvv").val();
+        var name = $("#User_First_Name").val();
+        var ccNum = $("#CreditCardNo").val();
+        var month = $("#ExpiryMonth").val();
+        var yr = $("#ExpiryDate").val();
+        var cvv = $("#CVV").val();
 
         //var cardType = ccValidate(ccNum);
         ccNum = parseInt(ccNum);
@@ -253,20 +256,8 @@
         //}
 
         if (!invalidData) {
-            $.ajax({
-                type: "POST",
-                url: '/Orders/CreateOrder',
-                data: {
-                    cardNum: $("#card_number").val().replace(/\s/g, '')
-                }
-            }).done(function (dt) {
-                $("#payModule").hide();
-                $('#orderConfirmation').empty();
-                $('#orderConfirmation').html(dt);
-            });
+            $("#Pay").hide();
+            $("#successful").show();
         }
     }
 </script>
-
-
-

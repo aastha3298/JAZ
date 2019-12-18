@@ -13,7 +13,7 @@ namespace JAZ.Models
         public int Transaction_ID { get; set; }
         [Required(ErrorMessage = "Card number is required")]
         [DisplayName("Credit Card Number")]
-        public Int32 CreditCardNo { get; set; }
+        public Int64 CreditCardNo { get; set; }
         [Required(ErrorMessage = "CVV is required")]
        
         public int CVV { get; set;}
@@ -23,8 +23,7 @@ namespace JAZ.Models
  
         public int ExpiryDate { get; set; }
         [Required(ErrorMessage = "Expiry month is required")]
-        [Range(01, 12, ErrorMessage = "Enter month between 01 to 12")]
-        [RegularExpression(@"^\d{2}$", ErrorMessage = "Invalid expiry month")]
+      
       
         public int ExpiryMonth { get; set; }
 

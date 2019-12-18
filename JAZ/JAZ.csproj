@@ -305,6 +305,7 @@
     <Content Include="Views\Order_Transactions\billing.cshtml" />
     <Content Include="Views\Home\_PartialViewPrice.cshtml" />
     <Content Include="Views\Home\_PartialViewCategory.cshtml" />
+    <Content Include="Views\Order_Transactions\TransactionSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

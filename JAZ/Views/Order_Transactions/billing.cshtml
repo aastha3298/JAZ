@@ -2,262 +2,2026 @@
 @{
     ViewBag.Title = "Transaction";
 }
+<!DOCTYPE html>
+<html lang="en-US">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<head>
+    <meta charset="UTF-8">
 
-    <style>
-        .transparent {
-            opacity: 0.2;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        .inpExp {
-            width: 40%;
-            display: inline-block !important;
-        }
-
-        #credit_cards img {
-            width: 50px;
-        }
-
-        .button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-
-            .button:hover, .button:active, .button:focus {
-                color: #fff;
-                text-decoration: none;
+    <title>Cart &#8211; Jevelin Theme Shop Demo</title>
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='dns-prefetch' href='//s.w.org' />
+    <link href='https://ajax.googleapis.com' rel='preconnect' />
+    <link href='https://fonts.googleapis.com' rel='preconnect' />
+    <link href='https://fonts.gstatic.com' crossorigin='anonymous' rel='preconnect' />
+    <link rel="alternate" type="application/rss+xml" title="Jevelin Theme Shop Demo &raquo; Feed" href="https://jevelin.shufflehound.com/shop1/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="Jevelin Theme Shop Demo &raquo; Comments Feed" href="https://jevelin.shufflehound.com/shop1/comments/feed/" />
+    <script type="text/javascript">
+        window._wpemojiSettings = {
+            "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/",
+            "ext": ".png",
+            "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/",
+            "svgExt": ".svg",
+            "source": {
+                "concatemoji": "https:\/\/jevelin.shufflehound.com\/shop1\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.5"
+            }
+        };
+        ! function (a, b, c) {
+            function d(a, b) {
+                var c = String.fromCharCode;
+                l.clearRect(0, 0, k.width, k.height), l.fillText(c.apply(this, a), 0, 0);
+                var d = k.toDataURL();
+                l.clearRect(0, 0, k.width, k.height), l.fillText(c.apply(this, b), 0, 0);
+                var e = k.toDataURL();
+                return d === e
             }
 
-        .lbl {
-            font-size: 15px;
-            font-family: Poppins,sans-serif;
-            font-weight: 300;
-            line-height: 1.4;
+            function e(a) {
+                var b;
+                if (!l || !l.fillText) return !1;
+                switch (l.textBaseline = "top", l.font = "600 32px Arial", a) {
+                    case "flag":
+                        return !(b = d([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819])) && (b = d([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447]), !b);
+                    case "emoji":
+                        return b = d([55357, 56424, 55356, 57342, 8205, 55358, 56605, 8205, 55357, 56424, 55356, 57340], [55357, 56424, 55356, 57342, 8203, 55358, 56605, 8203, 55357, 56424, 55356, 57340]), !b
+                }
+                return !1
+            }
+
+            function f(a) {
+                var c = b.createElement("script");
+                c.src = a, c.defer = c.type = "text/javascript", b.getElementsByTagName("head")[0].appendChild(c)
+            }
+            var g, h, i, j, k = b.createElement("canvas"),
+                l = k.getContext && k.getContext("2d");
+            for (j = Array("flag", "emoji"), c.supports = {
+                everything: !0,
+                everythingExceptFlag: !0
+            }, i = 0; i < j.length; i++) c.supports[j[i]] = e(j[i]), c.supports.everything = c.supports.everything && c.supports[j[i]], "flag" !== j[i] && (c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && c.supports[j[i]]);
+            c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && !c.supports.flag, c.DOMReady = !1, c.readyCallback = function () {
+                c.DOMReady = !0
+            }, c.supports.everything || (h = function () {
+                c.readyCallback()
+            }, b.addEventListener ? (b.addEventListener("DOMContentLoaded", h, !1), a.addEventListener("load", h, !1)) : (a.attachEvent("onload", h), b.attachEvent("onreadystatechange", function () {
+                "complete" === b.readyState && c.readyCallback()
+            })), g = c.source || {}, g.concatemoji ? f(g.concatemoji) : g.wpemoji && g.twemoji && (f(g.twemoji), f(g.wpemoji)))
+        }(window, document, window._wpemojiSettings);
+    </script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
         }
     </style>
-    <div id="Pay">
-        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg">
-            <strong>Please Enter data in all fields.</strong>.
+    <link rel='stylesheet' id='jevelin-settings-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/shufflehound-showcase-framework/style.css?ver=5.2.5' type='text/css' media='all' />
+    <link rel='stylesheet' id='wp-block-library-css' href='//cdn.jevelin.shufflehound.com/wp-includes/css/dist/block-library/style.min.css?ver=5.2.5' type='text/css' media='all' />
+    <link rel='stylesheet' id='wc-block-style-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/style.css?ver=2.3.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='rs-plugin-settings-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/revslider/public/assets/css/rs6.css?ver=6.0.9' type='text/css' media='all' />
+    <style id='rs-plugin-settings-inline-css' type='text/css'>
+        #rs-demo-id {
+        }
+    </style>
+    <link rel='stylesheet' id='woocommerce-layout-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=3.7.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-smallscreen-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=3.7.0' type='text/css' media='only screen and (max-width: 768px)' />
+    <link rel='stylesheet' id='woocommerce-general-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=3.7.0' type='text/css' media='all' />
+    <style id='woocommerce-inline-inline-css' type='text/css'>
+        .woocommerce form .form-row .required {
+            visibility: visible;
+        }
+    </style>
+    <link rel='stylesheet' id='fw-ext-builder-frontend-grid-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/unyson/framework/extensions/builder/static/css/frontend-grid.css?ver=1.2.11' type='text/css' media='all' />
+    <link rel='stylesheet' id='fw-ext-forms-default-styles-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/unyson/framework/extensions/forms/static/css/frontend.css?ver=2.7.22' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' href='//cdn.jevelin.shufflehound.com/wp-content/plugins/js_composer/assets/lib/bower/font-awesome/css/font-awesome.min.css?ver=6.0.5' type='text/css' media='all' />
+    <!--[if lt IE 9]>
+    <link rel='stylesheet' id='vc_lte_ie9-css'  href='//cdn.jevelin.shufflehound.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css?ver=6.0.5' type='text/css' media='screen' />
+    <![endif]-->
+    <link rel='stylesheet' id='bootstrap-css' href='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/css/plugins/bootstrap.min.css?ver=3.3.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-plugins-css' href='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/css/plugins.css?ver=5.2.5' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-shortcodes-css' href='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/css/shortcodes.css?ver=5.2.5' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-styles-css' href='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/style.css?ver=5.2.5' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-responsive-css' href='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/css/responsive.css?ver=5.2.5' type='text/css' media='all' />
+    <style id='jevelin-responsive-inline-css' type='text/css'>
+        /* Elements CSS */
+
+        .sh-tabs-filter li a,
+        .woocommerce .woocommerce-tabs li:not(.active) a,
+        .woocommerce .product .posted_in a,
+        .woocommerce .product .tagged_as a,
+        .woocommerce .product .woocommerce-review-link,
+        .woocommerce-checkout #payment div.payment_box,
+        .sh-default-color a,
+        .sh-default-color,
+        .post-meta-two a,
+        #sidebar a,
+        .logged-in-as a,
+        .post-meta-author a,
+        .sh-social-share-networks .jssocials-share i,
+        .sh-header-left-side .sh-header-copyrights-text a,
+        .wpcf7-form-control-wrap .simpleselect {
+            color: #8d8d8d !important;
+        }
+
+        .woocommerce nav.woocommerce-pagination ul.page-numbers a {
+            color: #8d8d8d;
+        }
+
+        html body,
+        html .menu-item a {
+            font-family: "Raleway";
+            color: #8d8d8d;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        a {
+            color: #f5614d;
+        }
+
+            a:hover,
+            a:focus,
+            .post-meta-two a:hover {
+                color: #eb5541;
+            }
+
+        body h1,
+        body h2,
+        body h3,
+        body h4,
+        body h5,
+        body h6,
+        .sh-heading span.sh-heading-content {
+            font-family: "Montserrat";
+            color: #3f3f3f;
+            font-weight: 400;
+        }
+
+        .sh-heading-font,
+        .masonry2 .post-meta-one,
+        .masonry2 .post-meta-two,
+        .sh-countdown > div > span,
+        .sh-woocommerce-products-style2 ul.products li.product .price,
+        .sh-blog-style2 .widget_product_tag_cloud a,
+        .sh-blog-style2 .widget_tag_cloud a,
+        .sh-blog-style2 .sh-recent-posts-widgets-item-content .post-meta-categories,
+        .sh-blog-style2 .post-meta-categories,
+        .sh-blog-style2 .post-item-single .post-meta-data,
+        .rev_slider .sh-rev-blog .sh-revslider-button2,
+        .sh-portfolio-filter-style4 .sh-filter span,
+        .sh-accordion-style6 .panel-title a {
+            font-family: Montserrat;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 21px;
+        }
+
+        h4 {
+            font-size: 18px;
+        }
+
+        h5 {
+            font-size: 16px;
+        }
+
+        h6 {
+            font-size: 14px;
+        }
+
+        .sh-progress-style1 .sh-progress-title,
+        .sh-progress-style1 .sh-progress-value2,
+        .sh-progress-style4 .sh-progress-title,
+        .sh-progress-style4 .sh-progress-value2,
+        .sh-progress-style5 .sh-progress-title,
+        .widget_price_filter .price_slider_wrapper .price_label span,
+        .product_list_widget a span,
+        .woocommerce .product .woo-meta-title,
+        .woocommerce .product .price ins,
+        .woocommerce .product .price .amount,
+        .woocommerce-checkout #payment ul.payment_methods li,
+        table th,
+        .woocommerce-checkout-review-order-table .order-total span,
+        .sh-comment-form label,
+        .sh-piechart-percentage,
+        .woocommerce table.shop_table a.remove:hover:before,
+        .woocommerce .woocommerce-tabs .commentlist .comment-text .meta strong,
+        .sh-pricing-amount,
+        .sh-pricing-icon,
+        .sh-countdown > div > span,
+        .blog-single .post-title h1:hover,
+        .blog-single .post-title h2:hover,
+        .post-meta-author a:hover,
+        .post-meta-categories a:hover,
+        .post-meta-categories span:hover,
+        .woocommerce table.shop_table.cart a,
+        .wrap-forms label,
+        .wpcf7-form p,
+        .sh-cf7-wpbakery label,
+        .post-password-form label,
+        .product_list_widget ins,
+        .product_list_widget .amount,
+        .sh-social-share-networks .jssocials-share:hover i,
+        .sh-page-links p,
+        .woocommerce ul.products li.product .add_to_cart_button:hover {
+            color: #3f3f3f !important;
+        }
+
+        .sh-header,
+        .sh-header-top,
+        .sh-header-mobile,
+        .sh-header-left-side {
+            background-color: #fff;
+        }
+
+        .primary-desktop .sh-header-top:not(.sh-header-top-10) {
+            background-color: #f5614d !important;
+        }
+
+        .primary-desktop .header-contacts-details,
+        .primary-desktop .header-social-media a,
+        .primary-desktop:not(.primary-desktop-light) .header-contacts-details-large-content {
+            color: #fff;
+        }
+
+        .sh-header-left-1 .header-bottom,
+        .sh-header-left-1 .header-social-media i,
+        .sh-header-left-1 .sh-side-button-search i,
+        .sh-header-left-1 .sh-side-button-cart .sh-nav-cart i,
+        .sh-header-left-side .header-bottom,
+        .sh-header-left-2 .header-social-media i {
+            color: #8d8d8d;
+        }
+
+        .sh-header-search-close i,
+        .sh-header .sh-nav > li.menu-item > a,
+        .sh-header #header-logo-title,
+        .sh-header .sh-nav > li.menu-item > a > i,
+        .sh-header-mobile-navigation li.menu-item > a > i,
+        .sh-header-left-side li.menu-item > a,
+        .sh-header-left-2 .sh-side-button-search,
+        .sh-header-left-2 .sh-side-button-cart,
+        .sh-header-left-2 .sh-side-button-cart .sh-nav-cart i,
+        .sh-header-left-2 .sh-nav li.menu-item > a.fa:before {
+            color: #505050;
+        }
+
+        .sh-header .c-hamburger span,
+        .sh-header .c-hamburger span:before,
+        .sh-header .c-hamburger span:after,
+        .sh-header-mobile-navigation .c-hamburger span,
+        .sh-header-mobile-navigation .c-hamburger span:before,
+        .sh-header-mobile-navigation .c-hamburger span:after {
+            background-color: #505050;
+        }
+
+        .sh-header .sh-nav-custom-icon-image svg,
+        .sh-header-mobile-navigation .sh-nav-custom-icon-image svg {
+            fill: #505050;
+        }
+
+        .sh-header .sh-nav-login #header-login > span {
+            border-color: #505050;
+        }
+
+        .sh-nav > li.menu-item > a,
+        .sh-nav-mobile li a {
+            font-size: 13px;
+        }
+
+        .sh-header .sh-nav > li.menu-item:hover:not(.sh-nav-social) > a,
+        .sh-header .sh-nav > li.menu-item:hover:not(.sh-nav-social) > a > i,
+        .sh-header .sh-nav > li.sh-nav-social > a:hover > i,
+        .sh-header-mobile-navigation li > a:hover > i,
+        .sh-header-left-side li.menu-item > a:hover {
+            color: rgba(61, 61, 61, 0.80);
+        }
+
+        .header-logo img {
+            height: auto;
+            max-height: 250px;
+        }
+
+        .sh-header-mobile-navigation .header-logo img {
+            height: auto;
+            max-height: 250px;
+            max-width: 100%;
+        }
+
+        .sh-sticky-header-active .header-logo img {
+            height: auto;
+        }
+
+        .sh-header-6 .sh-nav > .menu-item:not(.sh-nav-social),
+        .sh-header-6 .sh-nav > .sh-nav-social a {
+            height: 70px;
+            width: 70px;
+        }
+
+        .sh-header-5 .sh-nav > .menu-item {
+            height: 70px !important;
+            max-height: 70px !important;
+        }
+
+            .sh-header-5 .sh-nav > .menu-item > a,
+            .sh-header-6 .sh-nav > .menu-item > a {
+                line-height: 70px !important;
+                max-height: 70px !important;
+                height: 70px !important;
+            }
+
+        .sh-header-5 .sh-nav > .current_page_item {
+            margin-top: 15px !important;
+            margin-bottom: 15px !important;
+        }
+
+        .sh-header,
+        .sh-header-top-3,
+        .sh-header-top-4,
+        .sh-header-left-side .sh-header-search .line-test,
+        .sh-header-left-2 .sh-nav > li > a,
+        .sh-header-mobile-navigation {
+            border-bottom: 1px solid rgba( 0, 0, 0, 0.08);
+        }
+
+            .sh-header-top-3 .header-contacts-item span,
+            .sh-header-top-3 .header-social-media a,
+            .sh-header-5 .sh-nav-login,
+            .sh-header-5 .sh-nav-cart,
+            .sh-header-5 .sh-nav-search,
+            .sh-header-5 .sh-nav-social,
+            .sh-header-5 .sh-nav-social a:not(:first-child),
+            .sh-header-6 .sh-nav > .menu-item:not(.sh-nav-social),
+            .sh-header-6 .sh-nav > .sh-nav-social a,
+            .sh-header-6 .header-logo,
+            .sh-header-left-1 .header-social-media a {
+                border-left: 1px solid rgba( 0, 0, 0, 0.08);
+            }
+
+            .sh-header-top-3 .container,
+            .sh-header-5 .sh-nav > .menu-item:last-child,
+            .sh-header-6 .sh-nav > .menu-item:last-child,
+            .sh-header-6 .header-logo,
+            .sh-header-left-side,
+            .sh-header-left-1 .sh-side-button-search,
+            .sh-header-left-2 .sh-side-button-search {
+                border-right: 1px solid rgba( 0, 0, 0, 0.08);
+            }
+
+        .sh-header-left-1 .header-social-media,
+        .sh-header-left-1 .sh-side-buttons .sh-table-cell,
+        .sh-header-left-2 .sh-side-buttons .sh-table-cell {
+            border-top: 1px solid rgba( 0, 0, 0, 0.08);
+        }
+
+        .sh-header-left-2 .sh-side-buttons .sh-table-cell {
+            border-bottom: 1px solid rgba( 0, 0, 0, 0.08);
+        }
+
+        .sh-header:not(.sh-header-6) .container,
+        .sh-header-top:not(.sh-header-top-6) .container {
+            width: 90% !important;
+            max-width: 90% !important;
+        }
+
+        .sh-header-6 .container,
+        .sh-header-top-6 .container {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        .sh-header-right-side,
+        .header-mobile-social-media a,
+        .sh-header .sh-nav > li.menu-item ul,
+        .sh-header-left-side .sh-nav > li.menu-item ul,
+        .sh-header-mobile-dropdown {
+            background-color: #232323 !important;
+        }
+
+        .sh-nav-mobile li:after,
+        .sh-nav-mobile ul:before {
+            background-color: #303030 !important;
+        }
+
+        .header-mobile-social-media a i,
+        .sh-nav-mobile li a,
+        .sh-header .sh-nav > li.menu-item ul a,
+        .sh-header-left-side .sh-nav > li.menu-item ul a,
+        .header-mobile-search .header-mobile-form .header-mobile-form-input,
+        .header-mobile-search .header-mobile-form-submit {
+            color: #aaaaaa !important;
+        }
+
+        .sh-nav-mobile .current_page_item > a,
+        .sh-nav-mobile > li a:hover,
+        .sh-header .sh-nav ul,
+        .sh-header:not(.sh-header-megamenu-style2) .sh-nav > li.menu-item:not(.menu-item-cart) ul a:hover,
+        .sh-header .sh-nav ul.mega-menu-row li.mega-menu-col > a,
+        .sh-header .woocommerce a.remove:hover:before,
+        .sh-header-left-side .sh-nav ul,
+        .sh-header-left-side .sh-nav > li.menu-item:not(.menu-item-cart) ul a:hover,
+        .sh-header-left-side .sh-nav ul.mega-menu-row li.mega-menu-col > a,
+        .sh-header-left-side .woocommerce a.remove:hover:before {
+            color: #ffffff !important;
+        }
+
+        .header-mobile-social-media,
+        .header-mobile-social-media a,
+        .sh-nav > li.menu-item:not(.menu-item-cart) ul a:hover {
+            border-color: #303030 !important;
+        }
+
+        .sh-nav > li.menu-item:not(.menu-item-cart) ul a:hover,
+        .sh-nav-cart .menu-item-cart .total {
+            border-bottom: 1px solid #303030 !important;
+        }
+
+        .sh-nav-cart .menu-item-cart .total {
+            border-top: 1px solid #303030 !important;
+        }
+
+        .sh-nav .mega-menu-row > li.menu-item,
+        .sh-nav-cart .menu-item-cart .widget_shopping_cart_content p.buttons a:first-child {
+            border-right: 1px solid #303030 !important;
+        }
+
+        #sidebar .widget-item .widget-title {
+            color: #505050;
+            font-size: 14px;
+        }
+
+        #sidebar .widget-item li,
+        #sidebar .widget-item .sh-recent-posts-widgets-item {
+            border-color: #e3e3e3 !important;
+        }
+
+        .sh-footer {
+            background-image: url(//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Footer.jpg);
+            background-size: cover;
+            background-position: 50% 50%;
+        }
+
+            .sh-footer .sh-footer-widgets {
+                background-color: rgba(38, 38, 38, 0.9);
+                color: #e3e3e3;
+            }
+
+                .sh-footer .sh-footer-widgets .sh-recent-posts-widgets-item-meta a {
+                    color: #e3e3e3;
+                }
+
+                .sh-footer .sh-footer-widgets i:not(.icon-link),
+                .sh-footer .sh-footer-widgets .widget_recent_entries li:before {
+                    color: #f7f7f7 !important;
+                }
+
+                .sh-footer .sh-footer-widgets h3 {
+                    color: #ffffff;
+                    font-size: 20px;
+                }
+
+                .sh-footer .sh-footer-widgets ul li,
+                .sh-footer .sh-footer-widgets ul li,
+                .sh-footer .sh-recent-posts-widgets .sh-recent-posts-widgets-item {
+                    border-color: rgba(255, 255, 255, 0.10);
+                }
+
+                .sh-footer .sh-footer-widgets a,
+                .sh-footer .sh-footer-widgets li a,
+                .sh-footer .sh-footer-widgets h6 {
+                    color: #ffffff;
+                }
+
+                .sh-footer .sh-footer-widgets .product-title,
+                .sh-footer .sh-footer-widgets .woocommerce-Price-amount {
+                    color: #ffffff !important;
+                }
+
+        .sh-footer-columns > .widget-item {
+        }
+
+        .sh-footer .sh-copyrights {
+            background-color: #222222;
+            color: #ffffff;
+        }
+
+            .sh-footer .sh-copyrights a {
+                color: #ffffff;
+            }
+
+                .sh-footer .sh-copyrights a:hover {
+                    color: #eab0a8 !important;
+                }
+
+        .sh-footer .sh-copyrights-social a {
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+            .sh-footer .sh-copyrights-social a:last-child {
+                border-right: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+        media (max-width: 850px) {
+            .sh-footer .sh-copyrights-social a
+
+        {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        }
+
+        .woocommerce .woocomerce-styling ul.products li {
+            ;
+            width: 25%;
+        }
+
+        .sh-popover-mini {
+            font-family: 'Raleway' !important;
+        }
+
+        .sh-titlebar {
+            background-color: #fbfbfb;
+        }
+
+        .sh-back-to-top {
+            border-radius: 100px;
+        }
+
+        .sh-404 {
+            background-image: url();
+            background-color: #3f3f3f;
+        }
+
+        .cf7-required:after,
+        .woocommerce ul.products li.product a h3:hover,
+        .woocommerce ul.products li.product ins,
+        .post-title h2:hover,
+        .sh-team:hover .sh-team-role,
+        .sh-team-style4 .sh-team-role,
+        .sh-team-style4 .sh-team-icon:hover i,
+        .sh-header-search-submit,
+        .woocommerce .woocommerce-tabs li.active a,
+        .woocommerce .required,
+        .sh-recent-products .woocommerce .star-rating span::before,
+        .woocommerce .woocomerce-styling .star-rating span::before,
+        .woocommerce div.product p.price,
+        .woocomerce-styling li.product .amount,
+        .post-format-icon,
+        .sh-accent-color,
+        .sh-blog-tag-item:hover h6,
+        ul.page-numbers a:hover,
+        .sh-portfolio-single-info-item i,
+        .sh-filter-item.active,
+        .sh-filter-item:hover,
+        .sh-nav .sh-nav-cart li.menu-item-cart .mini_cart_item .amount,
+        .sh-pricing-button-style3,
+        #sidebar a:not(.sh-social-widgets-item):hover,
+        .logged-in-as a:hover,
+        .woocommerce table.shop_table.cart a:hover,
+        .wrap-forms sup:before,
+        .sh-comment-date a:hover,
+        .reply a.comment-edit-link,
+        .comment-respond #cancel-comment-reply-link,
+        .sh-portfolio-title:hover,
+        .sh-portfolio-single-related-mini h5:hover,
+        .sh-header-top-10 .header-contacts-details-large-icon i,
+        .sh-unyson-frontend-test.active {
+            color: #f5614d !important;
+        }
+
+        .woocommerce p.stars.selected a:not(.active),
+        .woocommerce p.stars.selected a.active,
+        .sh-dropcaps-full-square,
+        .sh-dropcaps-full-square-border,
+        .masonry2 .post-content-container a.post-meta-comments:hover,
+        .sh-header-builder-edit:hover {
+            background-color: #f5614d;
+        }
+
+        .contact-form input[type="submit"],
+        .sh-back-to-top:hover,
+        .sh-dropcaps-full-square-tale,
+        .sh-404-button,
+        .woocommerce .wc-forward,
+        .woocommerce .checkout-button,
+        .woocommerce div.product form.cart button,
+        .woocommerce .button:not(.add_to_cart_button),
+        .sh-blog-tag-item,
+        .sh-comments .submit,
+        .sh-sidebar-search-active .search-field,
+        .sh-nav .sh-nav-cart .buttons a.checkout,
+        ul.page-numbers .current,
+        ul.page-numbers .current:hover,
+        .post-background,
+        .post-item .post-category .post-category-list,
+        .cart-icon span,
+        .comment-input-required,
+        .widget_tag_cloud a:hover,
+        .widget_product_tag_cloud a:hover,
+        .woocommerce #respond input#submit,
+        .sh-portfolio-overlay1-bar,
+        .sh-pricing-button-style4,
+        .sh-pricing-button-style11,
+        .sh-revslider-button2,
+        .sh-portfolio-default2 .sh-portfolio-title,
+        .sh-recent-posts-widgets-count,
+        .sh-filter-item.active:after,
+        .blog-style-largedate .post-comments,
+        .sh-video-player-style1 .sh-video-player-image-play,
+        .sh-video-player-style2 .sh-video-player-image-play:hover,
+        .sh-video-player-style2 .sh-video-player-image-play:focus,
+        .woocommerce .woocommerce-tabs li a:after,
+        .sh-image-gallery .slick-dots li.slick-active button,
+        .sh-recent-posts-carousel .slick-dots li.slick-active button,
+        .sh-recent-products-carousel .slick-dots li.slick-active button,
+        .sh-settings-container-bar .sh-progress-status-value,
+        .post-password-form input[type="submit"],
+        .wpcf7-form .wpcf7-submit,
+        .sh-portfolio-filter-style3 .sh-filter-item.active .sh-filter-item-content,
+        .sh-portfolio-filter-style4 .sh-filter-item:hover .sh-filter-item-content,
+        .sh-woocommerce-categories-count,
+        .sh-woocommerce-products-style2 .woocommerce ul.products li.product .add_to_cart_button:hover,
+        .woocomerce-styling.sh-woocommerce-products-style2 ul.products li.product .add_to_cart_button:hover,
+        .sh-icon-group-style2 .sh-icon-group-item:hover,
+        .sh-text-background {
+            background-color: #f5614d !important;
+        }
+
+        .sh-cf7-style4 form input:not(.wpcf7-submit):focus {
+            border-bottom-color: #f5614d;
+        }
+
+        ::selection {
+            background-color: #f5614d !important;
+            color: #fff;
+        }
+
+        ::-moz-selection {
+            background-color: #f5614d !important;
+            color: #fff;
+        }
+
+        .woocommerce .woocommerce-tabs li.active a,
+        /*.sh-header-8 .sh-nav > .current-menu-item a*/ {
+            border-bottom-color: #f5614d !important;
+        }
+
+        #header-quote,
+        .sh-dropcaps-full-square-tale:after,
+        .sh-blog-tag-item:after,
+        .widget_tag_cloud a:hover:after,
+        .widget_product_tag_cloud a:hover:after {
+            border-left-color: #f5614d !important;
+        }
+
+        .cart-icon .cart-icon-triangle-color {
+            border-right-color: #f5614d !important;
+        }
+
+        .sh-back-to-top:hover,
+        .widget_price_filter .ui-slider .ui-slider-handle,
+        .sh-sidebar-search-active .search-field:hover,
+        .sh-sidebar-search-active .search-field:focus,
+        .sh-cf7-style2 form p input:not(.wpcf7-submit):focus,
+        .sh-cf7-style2 form p textarea:focus {
+            border-color: #f5614d !important;
+        }
+
+        .post-item .post-category .arrow-right {
+            border-left-color: #f5614d;
+        }
+
+        .woocommerce .wc-forward:hover,
+        .woocommerce .button:not(.add_to_cart_button):hover,
+        .woocommerce .checkout-button:hover,
+        .woocommerce #respond input#submit:hover,
+        .contact-form input[type="submit"]:hover,
+        .wpcf7-form .wpcf7-submit:hover,
+        .sh-video-player-image-play:hover,
+        .sh-404-button:hover,
+        .post-password-form input[type="submit"],
+        .sh-pricing-button-style11:hover,
+        .sh-revslider-button2.spacing-animation:not(.inverted):hover {
+            background-color: #3f3f3f !important;
+        }
+
+        .sh-cf7-unyson form .wpcf7-submit {
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #f5614d, #3f3f3f, #3f3f3f);
+        }
+
+        .sh-mini-overlay-container,
+        .sh-portfolio-overlay-info-box,
+        .sh-portfolio-overlay-bottom .sh-portfolio-icon,
+        .sh-portfolio-overlay-bottom .sh-portfolio-text,
+        .sh-portfolio-overlay2-bar,
+        .sh-portfolio-overlay2-data,
+        .sh-portfolio-overlay3-data {
+            background-color: rgba(245, 97, 77, 0.75) !important;
+        }
+
+        .widget_price_filter .ui-slider .ui-slider-range {
+            background-color: rgba(245, 97, 77, 0.5) !important;
+        }
+
+        .sh-team-social-overlay2 .sh-team-image:hover .sh-team-overlay2,
+        .sh-overlay-style1,
+        .sh-portfolio-overlay4 {
+            background-color: rgba(245, 97, 77, 0.8) !important;
+        }
+
+        .sh-header .sh-nav > .current_page_item > a,
+        .sh-header .sh-nav > .current-menu-ancestor > a,
+        .sh-header-left-side .sh-nav > .current_page_item > a {
+            color: #505050 !important;
+        }
+
+        .sh-popover-mini:not(.sh-popover-mini-dark) {
+            background-color: #f5614d;
+        }
+
+            .sh-popover-mini:not(.sh-popover-mini-dark):before {
+                border-color: transparent transparent #f5614d #f5614d !important;
+            }
+
+        .sh-footer .sh-footer-widgets a:hover,
+        .sh-footer .sh-footer-widgets li a:hover,
+        .sh-footer .sh-footer-widgets h6:hover {
+            color: #f5614d;
+        }
+    </style>
+    <link rel='stylesheet' id='jevelin-ie-css' href='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/css/ie.css?ver=5.2.5' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-fonts-css' href='https://fonts.googleapis.com/css?family=Raleway:200,300,300i,400,400i,600,600i,700,700i,|Montserrat:200,300,300i,400,400i,600,600i,700,700i,&#038;subset=latin' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/revslider/public/assets/js/revolution.tools.min.js?ver=6.0'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/revslider/public/assets/js/rs6.min.js?ver=6.0.9'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.70'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var wc_add_to_cart_params = {
+            "ajax_url": "\/shop1\/wp-admin\/admin-ajax.php",
+            "wc_ajax_url": "\/shop1\/?wc-ajax=%%endpoint%%",
+            "i18n_view_cart": "View cart",
+            "cart_url": "https:\/\/jevelin.shufflehound.com\/shop1\/cart\/",
+            "is_cart": "1",
+            "cart_redirect_after_add": "no"
+        };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=3.7.0'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var _zxcvbnSettings = {
+            "src": "https:\/\/jevelin.shufflehound.com\/shop1\/wp-includes\/js\/zxcvbn.min.js"
+        };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-includes/js/zxcvbn-async.min.js?ver=1.0'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/js_composer/assets/js/vendors/woocommerce-add-to-cart.js?ver=6.0.5'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/js/plugins.js?ver=5.2.5'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var jevelin_loadmore_posts = {
+            "ajax_url": "https:\/\/jevelin.shufflehound.com\/shop1\/wp-admin\/admin-ajax.php"
+        };
+        var jevelin = {
+            "page_loader": "0",
+            "notice": "",
+            "header_animation_dropdown_delay": "1000",
+            "header_animation_dropdown": "easeOutQuint",
+            "header_animation_dropdown_speed": "300",
+            "lightbox_opacity": "0.88",
+            "lightbox_transition": "elastic",
+            "lightbox_window_max_width": "1200",
+            "lightbox_window_max_height": "1200",
+            "lightbox_window_size": "0.8",
+            "page_numbers_prev": "Previous",
+            "page_numbers_next": "Next",
+            "rtl_support": "",
+            "footer_parallax": "",
+            "one_pager": "1",
+            "wc_lightbox": "jevelin",
+            "quantity_button": "on"
+        };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/js/scripts.js?ver=5.2.5'></script>
+    <link rel='https://api.w.org/' href='https://jevelin.shufflehound.com/shop1/wp-json/' />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://jevelin.shufflehound.com/shop1/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//cdn.jevelin.shufflehound.com/wp-includes/wlwmanifest.xml" />
+    <meta name="generator" content="WordPress 5.2.5" />
+    <meta name="generator" content="WooCommerce 3.7.0" />
+    <link rel="canonical" href="https://jevelin.shufflehound.com/shop1/cart/" />
+    <link rel='shortlink' href='https://jevelin.shufflehound.com/shop1/?p=2741' />
+    <link rel="alternate" type="application/json+oembed" href="https://jevelin.shufflehound.com/shop1/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjevelin.shufflehound.com%2Fshop1%2Fcart%2F" />
+    <link rel="alternate" type="text/xml+oembed" href="https://jevelin.shufflehound.com/shop1/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjevelin.shufflehound.com%2Fshop1%2Fcart%2F&#038;format=xml" />
+    <link rel="icon" type="image/png" href="//cdn.jevelin.shufflehound.com/fav.png" />
+
+    <meta name="description" content="Jevelin is multi-purpose WordPress theme for creating stunning websites. Features all the right tools needed for your next design.">
+    <meta name="keywords" content="agency, blog, business, corporate, creative, fitness, flat, modern, portfolio, responsive, shufflehound, startup, theme, wedding, wordpress, jevelin, multi-purpose, theme, themes">
+
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-57154054-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- Google Analytics -->
+
+    <div class="sh-page-loader sh-table sh-page-loader-style-spinner">
+        <div class="sh-table-cell">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+            </div>
         </div>
-        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg2">
-            <strong> Enter valid cardholder name</strong>
-        </div>
-        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg3">
-            <strong>Enter valid month between 01 to 12</strong>
-        </div>
-        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg4">
-            <strong> Enter valid year between 2019 to 2031</strong>
-        </div>
-        <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg5">
-            <strong>Enter valid card number</strong>
-        </div>
-        <div id="payModule">
-            <div class="section section-lg">
-                <div class="container" style="padding-left: 0px;padding-right: 0px;width: 45%;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card shadow-soft border p-4">
-                                <div class="row">
-                                    <div class="col-md-12"><h3>Total Amount:</h3></div>
+    </div>
+
+    <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+
+        .sh-page-loader {
+            background-color: #ffffff;
+        }
+
+        .sk-cube-grid .sk-cube,
+        .sk-folding-cube .sk-cube:before,
+        .sk-spinner > div,
+        .sh-page-loader-style-spinner .object {
+            background-color: #f5614d !important;
+        }
+    </style>
+
+    <noscript>
+        <style>
+            .woocommerce-product-gallery {
+                opacity: 1 !important;
+            }
+        </style>
+    </noscript>
+    <meta name='robots' content='noindex,follow' />
+    <style type="text/css">
+        .recentcomments a {
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    </style>
+    <meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
+    <meta name="generator" content="Powered by Slider Revolution 6.0.9 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+    <script type="text/javascript">
+        function setREVStartSize(a) {
+            try {
+                var b, c = document.getElementById(a.c).parentNode.offsetWidth;
+                if (c = 0 === c || isNaN(c) ? window.innerWidth : c, a.tabw = void 0 === a.tabw ? 0 : parseInt(a.tabw), a.thumbw = void 0 === a.thumbw ? 0 : parseInt(a.thumbw), a.tabh = void 0 === a.tabh ? 0 : parseInt(a.tabh), a.thumbh = void 0 === a.thumbh ? 0 : parseInt(a.thumbh), a.tabhide = void 0 === a.tabhide ? 0 : parseInt(a.tabhide), a.thumbhide = void 0 === a.thumbhide ? 0 : parseInt(a.thumbhide), a.mh = void 0 === a.mh || "" == a.mh ? 0 : a.mh, "fullscreen" === a.layout || "fullscreen" === a.l) b = Math.max(a.mh, window.innerHeight);
+                else {
+                    for (var d in a.gw = Array.isArray(a.gw) ? a.gw : [a.gw], a.rl) (void 0 === a.gw[d] || 0 === a.gw[d]) && (a.gw[d] = a.gw[d - 1]);
+                    for (var d in a.gh = void 0 === a.el || "" === a.el || Array.isArray(a.el) && 0 == a.el.length ? a.gh : a.el, a.gh = Array.isArray(a.gh) ? a.gh : [a.gh], a.rl) (void 0 === a.gh[d] || 0 === a.gh[d]) && (a.gh[d] = a.gh[d - 1]);
+                    var e, f = Array(a.rl.length),
+                        g = 0;
+                    for (var d in a.tabw = a.tabhide >= c ? 0 : a.tabw, a.thumbw = a.thumbhide >= c ? 0 : a.thumbw, a.tabh = a.tabhide >= c ? 0 : a.tabh, a.thumbh = a.thumbhide >= c ? 0 : a.thumbh, a.rl) f[d] = a.rl[d] < window.innerWidth ? 0 : a.rl[d];
+                    for (var d in e = f[0], f) e > f[d] && 0 < f[d] && (e = f[d], g = d);
+                    var h = c > a.gw[g] + a.tabw + a.thumbw ? 1 : (c - (a.tabw + a.thumbw)) / a.gw[g];
+                    b = a.gh[g] * h + (a.tabh + a.thumbh)
+                }
+                void 0 === window.rs_init_css && (window.rs_init_css = document.head.appendChild(document.createElement("style"))), document.getElementById(a.c).height = b, window.rs_init_css.innerHTML += "#" + a.c + "_wrapper { height: " + b + "px }"
+            } catch (a) {
+                console.log("Failure at Presize of Slider:" + a)
+            }
+        };
+    </script>
+    <noscript>
+        <style>
+            .wpb_animate_when_almost_visible {
+                opacity: 1;
+            }
+        </style>
+    </noscript>
+</head>
+<body class="page-template-default page page-id-2741 theme-jevelin woocommerce-cart woocommerce-page woocommerce-no-js wpb-js-composer js-comp-ver-6.0.5 vc_responsive singular sh-header-mobile-spacing-compact sh-body-header-sticky carousel-dot-style1 carousel-dot-spacing-5px carousel-dot-size-standard">
+
+    <div id="page-container" class="">
+
+        <header class="primary-mobile">
+
+            <div id="header-mobile" class="sh-header-mobile">
+                <div class="sh-header-mobile-navigation">
+
+                    <div class="container">
+                        <div class="sh-table">
+                            <div class="sh-table-cell sh-group">
+
+                                <div class="header-logo sh-group-equal">
+                                    <a href="https://jevelin.shufflehound.com/shop1/" class="header-logo-container sh-table-small">
+
+                                        <div class="sh-table-cell">
+                                            <img class="sh-standard-logo" src="//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Logo_shop.png" alt="Jevelin Theme Shop Demo" />
+                                            <img class="sh-sticky-logo" src="//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Logo_shop.png" alt="Jevelin Theme Shop Demo" />
+                                            <img class="sh-light-logo" src="//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Logo_shop.png" alt="Jevelin Theme Shop Demo" />
+                                        </div>
+
+                                    </a>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="name" class="lbl">Cardholder Name</label>
-                                            @Html.EditorFor(model => model.User.First_Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Cardholder name" } })
-                                            @Html.ValidationMessageFor(model => model.User.First_Name, "", new { @class = "text-danger" })
-                                        </div>
+
+                            </div>
+                            <div class="sh-table-cell">
+
+                                <nav id="header-navigation-mobile" class="header-standard-position">
+                                    <div class="sh-nav-container">
+                                        <ul class="sh-nav">
+
+                                            <li class="menu-item sh-nav-cart sh-nav-special sh-header-builder-main-element-cart">
+                                                <a href="https://jevelin.shufflehound.com/shop1/cart/">
+                                                    <div class="sh-nav-cart-content">
+                                                        <i class="icon-basket sh-header-builder-main-element-icon"></i>
+                                                        <div class="sh-header-cart-count cart-icon sh-group">
+
+                                                            <span>0</span>
+
+                                                        </div>
+                                                    </div>
+
+                                                </a>
+
+                                            </li>
+                                            <li class="menu-item sh-nav-dropdown">
+                                                <a>
+                                                    <div class="sh-table-full">
+                                                        <div class="sh-table-cell">
+                                                            <span class="c-hamburger c-hamburger--htx">
+                                                                <span>Toggle menu</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
+                                </nav>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="sh-header-mobile-dropdown">
+                    <div class="container sh-nav-container">
+                        <ul class="sh-nav-mobile"></ul>
+                    </div>
+
+                    <div class="container sh-nav-container">
+                        <div class="header-mobile-search">
+                            <form role="search" method="get" class="header-mobile-form" action="https://jevelin.shufflehound.com/shop1/">
+                                <input class="header-mobile-form-input" type="text" placeholder="Search here.." value="" name="s" required />
+                                <button type="submit" class="header-mobile-form-submit">
+                                    <i class="icon-magnifier"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="header-mobile-social-media">
+                        <a href="http://twitter.com" target="_blank" class="social-media-twitter">
+                            <i class="icon-social-twitter"></i>
+                        </a>
+                        <a href="http://facebook.com" target="_blank" class="social-media-facebook">
+                            <i class="icon-social-facebook"></i>
+                        </a>
+                        <div class="sh-clear"></div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <header class="primary-desktop">
+
+            <div class="sh-header-height">
+                <div class="sh-header sh-header-1 sh-header-8 sh-sticky-header sh-header-small-icons">
+                    <div class="container">
+                        <div class="sh-table">
+                            <div class="sh-table-cell sh-group">
+
+                                <div class="header-logo sh-group-equal">
+                                    <a href="https://jevelin.shufflehound.com/shop1/" class="header-logo-container sh-table-small">
+
+                                        <div class="sh-table-cell">
+                                            <img class="sh-standard-logo" src="//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Logo_shop.png" alt="Jevelin Theme Shop Demo" />
+                                            <img class="sh-sticky-logo" src="//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Logo_shop.png" alt="Jevelin Theme Shop Demo" />
+                                            <img class="sh-light-logo" src="//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Logo_shop.png" alt="Jevelin Theme Shop Demo" />
+                                        </div>
+
+                                    </a>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="card_number" class="lbl">Card Number</label>
-                                            <input id="CreditCardNo">
-                                        </div>
+
+                            </div>
+                            <div class="sh-table-cell">
+
+                                <nav id="header-navigation" class="header-standard-position">
+                                    <div class="sh-nav-container">
+                                        <ul id="menu-menu-1" class="sh-nav">
+                                            <li id="menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-5"><a href="@Url.Action("Index","Home")">Home</a></li>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+
+                                                Html.AntiForgeryToken();
+                                                <li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-11"><a href="@Url.Action("Edit", "Users")">My Account</a></li>
+                                                <li id="menu-item-8" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-8"><a href="@Url.Action("Logout", "Accounts")">LogOut</a></li>
+
+
+                                            }
+                                            else
+                                            {
+                                                <li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-11"><a href="@Url.Action("Registration", "Accounts")">Create Account</a></li>
+                                                <li id="menu-item-8" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-8"><a href="@Url.Action("Login", "Accounts")">LogIn</a></li>
+
+                                            }
+                                            <li class="menu-item sh-nav-seperator"><a><i class="icon icon-list"></i></a></li>
+                                            <li class="menu-item sh-nav-cart sh-nav-special sh-header-builder-main-element-cart">
+                                                <a href="@Url.Action("Index","Shopping_Cart")">
+                                                    <div class="sh-nav-cart-content">
+                                                        <i class="icon-basket sh-header-builder-main-element-icon"></i>
+                                                        <div class="sh-header-cart-count cart-icon sh-group">
+
+                                                            <span>0</span>
+
+                                                        </div>
+                                                    </div>
+
+                                                </a>
+
+                                                <ul class="sub-menu">
+                                                    <li class="menu-item menu-item-cart">
+                                                        <div class="widget woocommerce widget_shopping_cart">
+                                                            <h2 class="widgettitle"> </h2>
+                                                            <div class="widget_shopping_cart_content"></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="cvv" class="lbl">Security Code</label>
-                                            @Html.EditorFor(model => model.CVV, new { htmlAttributes = new { @class = "form-control", placeholder = "Security Code" } })
-                                            @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="exp" style="display:block;" class="lbl">Expiration Date</label>
-                                        @Html.EditorFor(model => model.ExpiryMonth, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "MM" } })
-                                        @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "YYYY" } })
-                                        <div>
-                                            @Html.ValidationMessageFor(model => model.ExpiryMonth, "", new { @class = "text-danger" })
-                                            @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-6" id="credit_cards" style="line-height: 4;text-align: right;">
-                                        <img src="~/Helpers/visa.jpg" id="visa">
-                                        <img src="~/Helpers/mastercard.jpg" id="master">
-                                        <img src="~/Helpers/amex.jpg" id="amex">
+                                </nav>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="header-search" class="sh-header-search">
+                        <div class="sh-table-full">
+                            <div class="sh-table-cell">
+
+                                <div class="line-test">
+                                    <div class="container">
+
+                                        <form method="get" class="sh-header-search-form" action="https://jevelin.shufflehound.com/shop1/">
+                                            <input type="search" class="sh-header-search-input" placeholder="Search Here.." value="" name="s" required />
+                                            <button type="submit" class="sh-header-search-submit">
+                                                <i class="icon-magnifier"></i>
+                                            </button>
+                                            <div class="sh-header-search-close close-header-search">
+                                                <i class="ti-close"></i>
+                                            </div>
+
+                                        </form>
+
                                     </div>
                                 </div>
 
-                                <div style="height:10px;">&nbsp;</div>
-                                <div style="display: flex; justify-content: flex-end">
-                                    <a href="#" class="button" id="btnMakePayment" onclick="confirmPayment();">Proceed To Payment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="sh-titlebar sh-titlebar-mobile-layout-compact sh-titlebar-mobile-title-on">
+            <div class="container">
+                <div class="sh-table sh-titlebar-height-small">
+                    <div class="titlebar-title sh-table-cell">
+
+                        <h2>
+                            Transaction Page
+                        </h2>
+
+                    </div>
+                    <div class="title-level sh-table-cell">
+
+                        <div id="breadcrumbs" class="breadcrumb-trail breadcrumbs">
+                            <span class="item-home"><a class="bread-link bread-home" href="https://jevelin.shufflehound.com/shop1/" title="Home">Home</a></span><span class="separator"> &gt; </span><span class="item-current item-2741"><span title="Cart"> Cart</span></span><span class="separator"> &gt; </span><span class="item-current item-2741"><span title="transaction"> Transaction</span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+ 
+        @using (Html.BeginForm("billing","Order_Transactions"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <style>
+
+                .transparent {
+                    opacity: 0.2;
+                }
+
+                .inpExp {
+                    width: 40%;
+                    display: inline-block !important;
+                }
+
+                #credit_cards img {
+                    width: 50px;
+                }
+
+                .button {
+                    background-color: #4CAF50;
+                    border: none;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                }
+
+                    .button:hover, .button:active, .button:focus {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+                .lbl {
+                    font-size: 15px;
+                    font-family: Poppins,sans-serif;
+                    font-weight: 300;
+                    line-height: 1.4;
+                }
+            </style>
+
+            <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg">
+                <strong>Please Enter data in all fields.</strong>.
+            </div>
+            <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg2">
+                <strong> Enter valid cardholder name</strong>
+            </div>
+            <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg3">
+                <strong>Enter valid month between 01 to 12</strong>
+            </div>
+            <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg4">
+                <strong> Enter valid year between 2019 to 2031</strong>
+            </div>
+            <div class="alert alert-danger" style="text-align:center; display:none" id="errorMsg5">
+                <strong>Enter valid card number</strong>
+            </div>
+            <div id="payModule">
+                <div class="section section-lg">
+                    <div class="container" style="padding-left: 0px;padding-right: 0px;width: 45%;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card shadow-soft border p-4">
+                                    <div class="row">
+                                        <div class="col-md-12"><h3>Total Amount:  @ViewBag.data</h3></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="First_Name" class="lbl">Cardholder Name</label>
+                                                @Html.EditorFor(model => model.User.First_Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Cardholder name" } })
+                                                @Html.ValidationMessageFor(model => model.User.First_Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="CreditCardNo" class="lbl">Card Number</label>
+                                                @Html.EditorFor(model => model.CreditCardNo, new { htmlAttributes = new { @class = "form-control", @pattern = "[0-9.]+", placeholder = "Card number" } })
+                                                @Html.ValidationMessageFor(model => model.CreditCardNo, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="CVV" class="lbl">Security Code</label>
+                                                @Html.EditorFor(model => model.CVV, new { htmlAttributes = new { @class = "form-control", placeholder = "Security Code" } })
+                                                @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="exp" style="display:block;" class="lbl">Expiration Date</label>
+                                            @Html.EditorFor(model => model.ExpiryMonth, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "MM" } })
+                                            @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control inpExp", placeholder = "YYYY" } })
+                                            <div>
+                                                @Html.ValidationMessageFor(model => model.ExpiryMonth, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6" id="credit_cards" style="line-height: 4;text-align: right;">
+                                            <img src="~/Helpers/visa.jpg" id="visa">
+                                            <img src="~/Helpers/mastercard.jpg" id="master">
+                                            <img src="~/Helpers/amex.jpg" id="amex">
+                                        </div>
+                                    </div>
+
+                                    <div style="height:10px;">&nbsp;</div>
+                                    <div style="display: flex; justify-content: flex-end">
+                                        <a href="#" class="button" id="btnMakePayment" onclick="confirmPayment();">Proceed To Payment</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="orderConfirmation"></div>
-
-     
-    </div>
-    <div id="successful" style="display:none">
-        <h1>Order Recieved</h1>
-    </div>
-
-}
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-<script>
-   var cardType = "";
-    function ccValidate(ccn) {
-        var regex_visa = new RegExp("^(4)");
-        var regex_master = new RegExp("^(51|52|53|54|55)");
-        var regex_amex = new RegExp("^(34|37)");
-
-
-        if (regex_visa.test(ccn)) {
-            cardType = "Visa";
-            $("#master").addClass("transparent");
-            $("#amex").addClass("transparent");
-            $("#visa").removeClass("transparent");
+            <div id="orderConfirmation"></div>
         }
-        else if (regex_master.test(ccn)) {
-            cardType = "Master";
-            $("#master").removeClass("transparent");
-            $("#amex").addClass("transparent");
-            $("#visa").addClass("transparent");
-        }
-        else if (regex_amex.test(ccn)) {
-            cardType = "American Express";
-            $("#master").addClass("transparent");
-            $("#amex").removeClass("transparent");
-            $("#visa").addClass("transparent");
-        }
-        else {
-            $("#master").addClass("transparent");
-            $("#amex").addClass("transparent");
-            $("#visa").addClass("transparent");
-        }
-        return cardType;
-    }
 
-    $(function () {
-        $("#card_number").change(function () {
-            ccValidate($(this).val());
-        });
-        $("#card_number").keyup(function () {
-            ccValidate($(this).val());
-        });
 
-        document.getElementById('CreditCardNo').oninput = function () {
-            this.value = cc_format(this.value)
-        }
-        $("#CreditCardNo").keypress(function (e) {
-            if ((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0)) {
-                return false;
+
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+        <script>
+                                        var cardType = "";
+                                        function ccValidate(ccn) {
+                                            var regex_visa = new RegExp("^(4)");
+                                            var regex_master = new RegExp("^(51|52|53|54|55)");
+                                            var regex_amex = new RegExp("^(34|37)");
+
+
+                                            if (regex_visa.test(ccn)) {
+                                                cardType = "Visa";
+                                                $("#master").addClass("transparent");
+                                                $("#amex").addClass("transparent");
+                                                $("#visa").removeClass("transparent");
+                                            }
+                                            else if (regex_master.test(ccn)) {
+                                                cardType = "Master";
+                                                $("#master").removeClass("transparent");
+                                                $("#amex").addClass("transparent");
+                                                $("#visa").addClass("transparent");
+                                            }
+                                            else if (regex_amex.test(ccn)) {
+                                                cardType = "American Express";
+                                                $("#master").addClass("transparent");
+                                                $("#amex").removeClass("transparent");
+                                                $("#visa").addClass("transparent");
+                                            }
+                                            else {
+                                                $("#master").addClass("transparent");
+                                                $("#amex").addClass("transparent");
+                                                $("#visa").addClass("transparent");
+                                            }
+                                            return cardType;
+                                        }
+
+                                        $(function () {
+                                            $("#CreditCardNo").change(function () {
+                                                ccValidate($(this).val());
+                                            });
+                                            $("#CreditCardNo").keyup(function () {
+                                                ccValidate($(this).val());
+                                            });
+
+                                            /*document.getElementById('CreditCardNo').oninput = function () {
+                                                this.value = cc_format(this.value)
+                                            }*/
+                                            $("#CreditCardNo").keypress(function (e) {
+                                                if ((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0)) {
+                                                    return false;
+                                                }
+                                                return true;
+                                            });
+                                        });
+
+
+                                        function cc_format(value) {
+                                            var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+                                            var matches = v.match(/\d{4,16}/g);
+                                            var match = matches && matches[0] || ''
+                                            var parts = []
+                                            for (i = 0, len = match.length; i < len; i += 4) {
+                                                parts.push(match.substring(i, i + 4))
+                                            }
+                                            if (parts.length) {
+                                                return parts.join(' ')
+                                            } else {
+                                                return value
+                                            }
+                                        }
+
+                                        /*  ================================================================
+Credit card verification functions
+Originally included as Starter Application 1.0.0 in LivePayment.
+20 Feb 1997 modified by egk:
+changed naming convention to initial lowercase
+                                          (isMasterCard instead of IsMasterCard, etc.)
+changed isCC to isCreditCard
+retained functions named with older conventions from
+                                          LivePayment as stub functions for backward
+                                          compatibility only
+added "AMERICANEXPRESS" as equivalent of "AMEX"
+                                          for naming consistency
+================================================================ */
+
+
+                                        /*  ================================================================
+                                            FUNCTION:  isCreditCard(st)
+
+                                            INPUT:     st - a string representing a credit card number
+
+                                            RETURNS:  true, if the credit card number passes the Luhn Mod-10
+                                                    test.
+                                                  false, otherwise
+                                            ================================================================ */
+
+                                        function isCreditCard(st) {
+                                            // Encoding only works on cards with less than 19 digits
+                                            if (st.length > 19)
+                                                return (false);
+
+                                            sum = 0; mul = 1; l = st.length;
+                                            for (i = 0; i < l; i++) {
+                                                digit = st.substring(l - i - 1, l - i);
+                                                tproduct = parseInt(digit, 10) * mul;
+                                                if (tproduct >= 10)
+                                                    sum += (tproduct % 10) + 1;
+                                                else
+                                                    sum += tproduct;
+                                                if (mul == 1)
+                                                    mul++;
+                                                else
+                                                    mul--;
+                                            }
+                                            // Uncomment the following line to help create credit card numbers
+                                            // 1. Create a dummy number with a 0 as the last digit
+                                            // 2. Examine the sum written out
+                                            // 3. Replace the last digit with the difference between the sum and
+                                            //    the next multiple of 10.
+
+                                            //  document.writeln("<BR>Sum      = ",sum,"<BR>");
+                                            //  alert("Sum      = " + sum);
+
+                                            if ((sum % 10) == 0)
+                                                return (true);
+                                            else
+                                                return (false);
+
+                                        } // END FUNCTION isCreditCard()
+
+                                        function stripInput(cc) {
+                                            cc = cc.replace(/ /g, '');
+                                            cc = cc.replace(/-/g, '');
+                                            return cc;
+                                        }
+
+                                        /*  ================================================================
+                                            FUNCTION:  isVisa()
+
+                                            INPUT:     cc - a string representing a credit card number
+
+                                            RETURNS:  true, if the credit card number is a valid VISA number.
+
+                                                  false, otherwise
+
+                                            Sample number: 4111 1111 1111 1111 (16 digits)
+                                            ================================================================ */
+
+                                        function isVisa(cc) {
+                                            cc = stripInput(cc);
+                                            console.log(cc.length)
+                                            if (((cc.length == 16) || (cc.length == 13)) &&
+                                                (cc.substring(0, 1) == 4))
+                                                return isCreditCard(cc);
+                                            return false;
+                                        }  // END FUNCTION isVisa()
+
+
+
+
+                                        /*  ================================================================
+                                            FUNCTION:  isMasterCard()
+
+                                            INPUT:     cc - a string representing a credit card number
+
+                                            RETURNS:  true, if the credit card number is a valid MasterCard
+                                                    number.
+
+                                                  false, otherwise
+
+                                            Sample number: 5500 0000 0000 0004 (16 digits)
+                                            ================================================================ */
+
+                                        function isMasterCard(cc) {
+                                            cc = stripInput(cc);
+                                            firstdig = cc.substring(0, 1);
+                                            seconddig = cc.substring(1, 2);
+                                            if ((cc.length == 16) && (firstdig == 5) &&
+                                                ((seconddig >= 1) && (seconddig <= 5)))
+                                                return isCreditCard(cc);
+                                            return false;
+
+                                        } // END FUNCTION isMasterCard()
+
+
+
+
+
+                                        /*  ================================================================
+                                            FUNCTION:  isAmericanExpress()
+
+                                            INPUT:     cc - a string representing a credit card number
+
+                                            RETURNS:  true, if the credit card number is a valid American
+                                                    Express number.
+
+                                                  false, otherwise
+
+                                            Sample number: 340000000000009 (15 digits)
+                                            ================================================================ */
+
+                                        function isAmericanExpress(cc) {
+                                            cc = stripInput(cc);
+                                            firstdig = cc.substring(0, 1);
+                                            seconddig = cc.substring(1, 2);
+                                            if ((cc.length == 15) && (firstdig == 3) &&
+                                                ((seconddig == 4) || (seconddig == 7)))
+                                                return isCreditCard(cc);
+                                            return false;
+
+                                        } // END FUNCTION isAmericanExpress()
+
+                                        function confirmPayment() {
+                                            var errorMsg = document.getElementById("errorMsg");
+                                            var errorMsg2 = document.getElementById("errorMsg2");
+                                            var errorMsg3 = document.getElementById("errorMsg3");
+                                            var errorMsg4 = document.getElementById("errorMsg4");
+                                            var errorMsg5 = document.getElementById("errorMsg5");
+                                            var name = $("#First_Name").val();
+                                            var ccNum = $("#CreditCardNo").val();
+                                            var month = $("#expiry_month").val();
+                                            var yr = $("#expiry_year").val();
+                                            var cvv = $("#CVV").val();
+
+                                            //var cardType = ccValidate(ccNum);
+                                            ccNum = ccNum.replace(/\s/g, "");
+                                            let meowreg = "^((4\d{3})|(5[1-5]\d{2}))(-?|\040?)(\d{4}(-?|\040?)){3}|^(3[4,7]\d{2})(-?|\040?)\d{6}(-?|\040?)\d{5}"
+                                            const nameRegex = new RegExp(meowreg);
+                                            var invalidData = false;
+                                            if (name == "" || ccNum == "" || isNaN(ccNum) || month == "" || yr == "" || cvv == "") {
+                                                invalidData = true;
+                                                errorMsg.style.display = "block";
+                                                $('#errorMsg').delay(2000).fadeOut('slow');
+
+                                            }
+                                          
+                                        
+                                            else if (cardType == "" || ((cardType == "Visa" || cardType == "Master") && ccNum.length != 16) || (cardType == "American Express" && ccNum.length != 15)) {
+                                                alert(cardType);
+                                                invalidData = true;
+                                                errorMsg5.style.display = "block";
+                                                $('#errorMsg5').delay(2000).fadeOut('slow');
+
+                                            }
+                                            if (cardType == "Visa" && !isVisa(ccNum)) { alert("Invalid card!"); return false }
+                                            if (cardType == "Master" && !isMasterCard(ccNum)) { alert("Invalid card!"); return false }
+                                            if (cardType == "American Express" && !isAmericanExpress(ccNum)) { alert("Invalid card!"); return false }
+                                            
+                                            if (!invalidData) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: '/Order_Transactions/TransactionSuccess',
+                                                    data: {
+                                                        creditcardno: $("#CreditCardNo").val().replace(/\s/g, ''),
+                                                        cvv: $("CVV").val()
+                                                        
+                                                    }
+                                                }).done(function (dt) {
+                                                    $("#payModule").hide();
+                                                    $('#orderConfirmation').empty();
+                                                    $('#orderConfirmation').html(dt);
+                                                });
+                                            } 
+                                        }
+        </script>
+
+
+
+            <div id="successful" style="display:none">
+                <h1>Order Recieved</h1>
+            </div>
+
+        
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+
+                $('.primary-desktop .header-logo-container, .primary-mobile .header-logo-container').attr('href', '//jevelin.shufflehound.com/hello/');
+
+                function jevelin_settings() {
+                    if ($(window).width() < 600) {
+                        $('.sh-settings').hide();
+                    } else {
+                        $('.sh-settings').show();
+                    }
+                }
+                jevelin_settings();
+
+                $(window).resize(function () {
+                    clearTimeout(window.resizedFinished2);
+                    window.resizedFinished2 = setTimeout(function () {
+                        jevelin_settings();
+                    }, 500);
+                });
+
+                $('.sh-settings-hide').on('click', function () {
+                    $('.sh-settings').toggleClass('sh-settings-active');
+                });
+
+                $(document).keyup(function (e) {
+                    if (e.keyCode == 27) {
+                        if ($('.sh-settings').hasClass('sh-settings-active')) {
+                            $('.sh-settings').removeClass('sh-settings-active');
+                        }
+                    }
+                });
+
+                jQuery('.form-submit #submit').on('click', function (event) {
+                    alert('This feature is disabled in our demo site. Sorry for any inconvenience.');
+                    event.preventDefault()
+                    event.stopPropagation()
+                    return false;
+                });
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                "use strict";
+
+                $(".sh-page-loader").fadeOut(500);
+                $("body").css('overflow-y', 'visible').css('overflow-x', 'hidden');
+
+                $(window).bind('beforeunload', function (e) {
+                    $('.sh-page-loader').fadeIn();
+                });
+
+            });
+        </script>
+
+        <style>
+            .sh-page-loader {
+                background-color: rgba(255, 255, 255, 0.98) !important;
             }
-            return true;
-        });
-    });
+        </style>
 
+        <style type="text/css">
+                        .sh-side-options {
+                            position: fixed;
+                            top: 0;
+                            bottom: 0;
+                            right: 0;
+                            z-index: 12345678902;
+                            transition: 0.3s all ease;
+                            transition: 0.2s all;
+                            padding: 0 0;
+                            width: 420px;
+                            transform: translateX(420px);
+                        }
 
-    function cc_format(value) {
-        var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
-        var matches = v.match(/\d{4,16}/g);
-        var match = matches && matches[0] || ''
-        var parts = []
-        for (i = 0, len = match.length; i < len; i += 4) {
-            parts.push(match.substring(i, i + 4))
-        }
-        if (parts.length) {
-            return parts.join(' ')
-        } else {
-            return value
-        }
-    }
+                            .sh-side-options.open {
+                                transform: translateX(0px);
+                                box-shadow: 0 0px 39px 10px rgba(0, 0, 0, 0.2);
+                            }
 
-    function confirmPayment() {
-        var errorMsg = document.getElementById("errorMsg");
-        var errorMsg2 = document.getElementById("errorMsg2");
-        var errorMsg3 = document.getElementById("errorMsg3");
-        var errorMsg4 = document.getElementById("errorMsg4");
-        var errorMsg5 = document.getElementById("errorMsg5");
-        var name = $("#User_First_Name").val();
-        var ccNum = $("#CreditCardNo").val();
-        var month = $("#ExpiryMonth").val();
-        var yr = $("#ExpiryDate").val();
-        var cvv = $("#CVV").val();
+                        .sh-side-options-container {
+                            position: absolute;
+                            top: 216px;
+                            left: -75px;
+                            width: 60px;
+                            background-color: rgba(255, 255, 2555, 1);
+                            border-radius: 5px;
+                            margin-right: 15px;
+                            box-shadow: -10px 0px 20px 2px rgba(0, 0, 0, .06);
+                        }
 
-        //var cardType = ccValidate(ccNum);
-        ccNum = parseInt(ccNum);
-        var nameRegex = new RegExp("([a-zA-Z\d]+[\w\d]*|)[a-zA-Z]+[\w\d.]*");
-        var invalidData = false;
+                        .sh-side-options.sh-side-options-pages .sh-side-options-container {
+                            top: 150px;
+                        }
 
-        if (name == "" || ccNum == "" || isNaN(ccNum) || month == "" || yr == "" || cvv == "") {
-            invalidData = true;
-            errorMsg.style.display = "block";
-            $('#errorMsg').delay(2000).fadeOut('slow');
+                        .sh-side-options-item {
+                            display: block;
+                            text-align: center;
+                            margin: 0px;
+                            transition: 0.3s all ease-in-out;
+                            position: relative;
+                            padding: 7px;
+                            cursor: pointer;
+                        }
 
-        }
-        else if (!nameRegex.test(name)) {
-            invalidData = true;
-            errorMsg2.style.display = "block";
-            $('#errorMsg2').delay(2000).fadeOut('slow');
+                            .sh-side-options-item:not(:last-child) {
+                                border-bottom: 1px solid #f1f3fc;
+                            }
 
-        }
-        else if (month.length != 2 || parseInt(month) < 1 || parseInt(month) > 12) {
-            invalidData = true;
-            errorMsg3.style.display = "block";
-            $('#errorMsg3').delay(2000).fadeOut('slow');
+                        .sh-side-options-item-container {
+                            border-radius: 4px;
+                            padding: 8px 0;
+                        }
 
-        }
-        else if (yr.length != 4 || parseInt(yr) < 2019 || parseInt(yr) > 2031) {
-            invalidData = true;
-            errorMsg4.style.display = "block";
-            $('#errorMsg4').delay(2000).fadeOut('slow');
+                        .sh-side-options-item:hover .sh-side-options-item-container,
+                        .sh-side-options-item:focus .sh-side-options-item-container,
+                        .sh-side-options.open .sh-side-options-item-trigger-demos .sh-side-options-item-container {
+                            background-color: #f3f5fd;
+                        }
 
-        }
-        //else if (cardType == "" || ((cardType == "Visa" || cardType == "Master") && ccNum.length != 16) || (cardType == "American Express" && ccNum.length != 15)) {
-        //    alert(cardType);
-        //    invalidData = true;
-        //    errorMsg5.style.display = "block";
-        //    $('#errorMsg5').delay(2000).fadeOut('slow');
+                        .sh-side-options-item i {
+                            font-size: 22px;
+                        }
 
-        //}
+                        .sh-side-options-item:not(:hover):not(:focus) {
+                            color: #9396a5 !important;
+                        }
 
-        if (!invalidData) {
-            $("#Pay").hide();
-            $("#successful").show();
-        }
-    }
-</script>
+                        .sh-side-options-item:hover .sh-side-options-hover {
+                            opacity: 1;
+                            transform: translateX(-97%);
+                        }
+
+                        .sh-side-options-hover {
+                            position: absolute;
+                            background-color: #ffffff;
+                            color: #32343d;
+                            padding: 20px 26px;
+                            transform: translateX(-70%);
+                            left: 0px;
+                            top: 0;
+                            bottom: 0;
+                            opacity: 0;
+                            transition: 0.2s all ease-in-out;
+                            z-index: -100;
+                            border-top-left-radius: 5px;
+                            border-bottom-left-radius: 5px;
+                            font-size: 13px;
+                            box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.08);
+                        }
+
+                            .sh-side-options-hover span {
+                                padding: 0px 3px;
+                            }
+
+                        media (max-width: 700px) {
+                            .sh-side-options
+
+                        {
+                            width: 52px;
+                        }
+
+                        .sh-side-options-item {
+                            padding: 10px 0;
+                        }
+
+                            .sh-side-options-item i {
+                                font-size: 16px;
+                            }
+
+                        }
+
+                        media (max-width: 600px) {
+                            .sh-side-options
+
+                        {
+                            display: none;
+                        }
+
+                        }
+
+                        media (max-height: 500px) {
+                            .sh-side-options
+
+                        {
+                            top: 120px !important;
+                        }
+
+                        }
+
+                        .sh-side-options-item i {
+                            color: #9396a5 !important;
+                        }
+
+                        .sh-side-options.open .sh-side-options-item-trigger-demos i,
+                        .sh-side-options-item:hover i,
+                        .sh-side-options-item:focus i {
+                            color: #294cff !important;
+                        }
+                        /*
+            ** Side Demos
+            */
+
+                        .sh-side-demos-container {
+                            top: 0;
+                            left: 0;
+                            right: -17px;
+                            bottom: 0;
+                            position: absolute;
+                            overflow-y: scroll;
+                            background-color: #fff;
+                            background-repeat: no-repeat;
+                            background-position: right top;
+                            padding: 22px;
+                        }
+
+                        body.admin-bar .sh-side-demos-container {
+                            top: 32px;
+                        }
+                        /* Demos Text */
+
+                        .sh-side-demos-intro {
+                            text-align: center;
+                        }
+
+                        .sh-side-demos-intro-title {
+                            font-size: 24px;
+                            font-weight: 300;
+                            margin-top: 25px;
+                            margin-bottom: 15px;
+                        }
+
+                            .sh-side-demos-intro-title img {
+                                height: 24px;
+                                top: -6px;
+                                position: relative;
+                            }
+
+                        .sh-side-demos-intro-descr {
+                            max-width: 250px;
+                            margin: 0 auto;
+                            display: table;
+                            color: #838794;
+                        }
+                        /* Demos Close Button */
+
+                        .sh-side-demos-container-close {
+                            position: absolute;
+                            top: 22px;
+                            right: 22px;
+                            cursor: pointer;
+                        }
+
+                            .sh-side-demos-container-close i {
+                                color: #c5c5c5;
+                                font-size: 18px;
+                                transition: 0.3s all ease;
+                            }
+
+                            .sh-side-demos-container-close:hover i,
+                            .sh-side-demos-container-close:focus i {
+                                color: #7f7f7f;
+                            }
+                        /* Demo Items */
+
+                        .sh-side-demos-loop-container {
+                            position: relative;
+                            margin: 0 -10px;
+                            margin-top: 28px;
+                        }
+
+                        .sh-side-demos-item {
+                            display: inline-block;
+                            position: relative;
+                            margin-right: -4px;
+                            margin-bottom: 25px;
+                            width: 50%;
+                            padding: 0 10px;
+                            text-align: center;
+                            transition: .3s all ease;
+                            top: 0;
+                        }
+
+                            .sh-side-demos-item:hover {
+                                top: -4px;
+                            }
+
+                            .sh-side-demos-item .sh-image-lazy-loading {
+                                border-radius: 3px;
+                                box-shadow: 0 2px 20px 1px rgba(0, 0, 0, .1);
+                            }
+
+                            .sh-side-demos-item img {
+                                border-radius: 3px;
+                            }
+
+                        .sh-side-demos-item-name {
+                            font-size: 12px;
+                            color: #32343d;
+                            font-weight: 600;
+                            padding-top: 10px;
+                        }
+
+                        .sh-side-demos-item-tag {
+                            position: absolute !important;
+                            width: auto !important;
+                            height: auto !important;
+                            top: 4px;
+                            left: 6px;
+                            background-color: #ff5944;
+                            color: #fff;
+                            font-size: 9px;
+                            font-weight: 600;
+                            display: block;
+                            padding: 1px 9px;
+                            text-transform: capitalize;
+                            border-radius: 100px;
+                        }
+        </style>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                /*if( $(window).width() > 1000) {
+                    if( $.cookie( 'gillion.sidebartest', { path: '', domain: 'jevelin.shufflehound.com' } ) == 'opened' ) {
+                        $('.sh-side-demos').addClass('open');
+                    } else {
+                        $('.sh-side-demos').removeClass('open');
+                    }
+                }*/
+
+                $('.sh-side-options-item-trigger-demos').on('click', function () {
+                    $('.sh-side-options').css('transition', '0.3s all ease-in-out');
+
+                    if ($('.sh-side-options').hasClass('open')) {
+                        $('.sh-side-options').removeClass('open');
+                    } else {
+                        $('.sh-side-options .sh-side-demos-image').each(function () {
+                            $(this).attr('src', $(this).attr('data-src'));
+                        });
+                        $('.sh-side-options').addClass('open');
+                    }
+                });
+
+                $('.sh-side-demos-container-close').on('click', function () {
+                    $('.sh-side-options').css('transition', '0.3s all ease-in-out');
+                    $('.sh-side-options').removeClass('open');
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            var c = document.body.className;
+            c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+            document.body.className = c;
+        </script>
+        <script type="text/javascript">
+            var wc_product_block_data = JSON.parse(decodeURIComponent('%7B%22min_columns%22%3A1%2C%22max_columns%22%3A6%2C%22default_columns%22%3A3%2C%22min_rows%22%3A1%2C%22max_rows%22%3A6%2C%22default_rows%22%3A1%2C%22thumbnail_size%22%3A300%2C%22placeholderImgSrc%22%3A%22https%3A%5C%2F%5C%2Fcdn.jevelin.shufflehound.com%5C%2Fwp-content%5C%2Fuploads%5C%2Fsites%5C%2F9%5C%2Fwoocommerce-placeholder.png%22%2C%22min_height%22%3A500%2C%22default_height%22%3A500%2C%22isLargeCatalog%22%3Afalse%2C%22limitTags%22%3Afalse%2C%22hasTags%22%3Afalse%2C%22productCategories%22%3A%5B%7B%22term_id%22%3A24%2C%22name%22%3A%22Uncategorized%22%2C%22slug%22%3A%22uncategorized%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A24%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22https%3A%5C%2F%5C%2Fjevelin.shufflehound.com%5C%2Fshop1%5C%2Fproduct-category%5C%2Funcategorized%5C%2F%22%7D%2C%7B%22term_id%22%3A11%2C%22name%22%3A%22Accessories%22%2C%22slug%22%3A%22accessories%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A11%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A4%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22https%3A%5C%2F%5C%2Fjevelin.shufflehound.com%5C%2Fshop1%5C%2Fproduct-category%5C%2Faccessories%5C%2F%22%7D%2C%7B%22term_id%22%3A14%2C%22name%22%3A%22Clothings%22%2C%22slug%22%3A%22clothings%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A14%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A5%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22https%3A%5C%2F%5C%2Fjevelin.shufflehound.com%5C%2Fshop1%5C%2Fproduct-category%5C%2Fclothings%5C%2F%22%7D%2C%7B%22term_id%22%3A9%2C%22name%22%3A%22Shirts%22%2C%22slug%22%3A%22shirts%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A9%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A3%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22https%3A%5C%2F%5C%2Fjevelin.shufflehound.com%5C%2Fshop1%5C%2Fproduct-category%5C%2Fshirts%5C%2F%22%7D%2C%7B%22term_id%22%3A13%2C%22name%22%3A%22Shoes%22%2C%22slug%22%3A%22shoes%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A13%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A1%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22https%3A%5C%2F%5C%2Fjevelin.shufflehound.com%5C%2Fshop1%5C%2Fproduct-category%5C%2Fshoes%5C%2F%22%7D%2C%7B%22term_id%22%3A10%2C%22name%22%3A%22Shorts%22%2C%22slug%22%3A%22shorts%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A10%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A2%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22https%3A%5C%2F%5C%2Fjevelin.shufflehound.com%5C%2Fshop1%5C%2Fproduct-category%5C%2Fshorts%5C%2F%22%7D%5D%2C%22homeUrl%22%3A%22https%3A%5C%2F%5C%2Fjevelin.shufflehound.com%5C%2Fshop1%5C%2F%22%7D'));
+        </script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var wpcf7 = {
+                "apiSettings": {
+                    "root": "https:\/\/jevelin.shufflehound.com\/shop1\/wp-json\/contact-form-7\/v1",
+                    "namespace": "contact-form-7\/v1"
+                }
+            };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.4'></script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var woocommerce_params = {
+                "ajax_url": "\/shop1\/wp-admin\/admin-ajax.php",
+                "wc_ajax_url": "\/shop1\/?wc-ajax=%%endpoint%%"
+            };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=3.7.0'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var wc_country_select_params = {
+                "countries": "{\"AF\":[],\"AO\":{\"BGO\":\"Bengo\",\"BLU\":\"Benguela\",\"BIE\":\"Bi\\u00e9\",\"CAB\":\"Cabinda\",\"CNN\":\"Cunene\",\"HUA\":\"Huambo\",\"HUI\":\"Hu\\u00edla\",\"CCU\":\"Kuando Kubango\",\"CNO\":\"Kwanza-Norte\",\"CUS\":\"Kwanza-Sul\",\"LUA\":\"Luanda\",\"LNO\":\"Lunda-Norte\",\"LSU\":\"Lunda-Sul\",\"MAL\":\"Malanje\",\"MOX\":\"Moxico\",\"NAM\":\"Namibe\",\"UIG\":\"U\\u00edge\",\"ZAI\":\"Zaire\"},\"AR\":{\"C\":\"Ciudad Aut\u00f3noma de Buenos Aires\",\"B\":\"Buenos Aires\",\"K\":\"Catamarca\",\"H\":\"Chaco\",\"U\":\"Chubut\",\"X\":\"C\u00f3rdoba\",\"W\":\"Corrientes\",\"E\":\"Entre R\u00edos\",\"P\":\"Formosa\",\"Y\":\"Jujuy\",\"L\":\"La Pampa\",\"F\":\"La Rioja\",\"M\":\"Mendoza\",\"N\":\"Misiones\",\"Q\":\"Neuqu\u00e9n\",\"R\":\"R\u00edo Negro\",\"A\":\"Salta\",\"J\":\"San Juan\",\"D\":\"San Luis\",\"Z\":\"Santa Cruz\",\"S\":\"Santa Fe\",\"G\":\"Santiago del Estero\",\"V\":\"Tierra del Fuego\",\"T\":\"Tucum\u00e1n\"},\"AT\":[],\"AU\":{\"ACT\":\"Australian Capital Territory\",\"NSW\":\"New South Wales\",\"NT\":\"Northern Territory\",\"QLD\":\"Queensland\",\"SA\":\"South Australia\",\"TAS\":\"Tasmania\",\"VIC\":\"Victoria\",\"WA\":\"Western Australia\"},\"AX\":[],\"BD\":{\"BD-05\":\"Bagerhat\",\"BD-01\":\"Bandarban\",\"BD-02\":\"Barguna\",\"BD-06\":\"Barishal\",\"BD-07\":\"Bhola\",\"BD-03\":\"Bogura\",\"BD-04\":\"Brahmanbaria\",\"BD-09\":\"Chandpur\",\"BD-10\":\"Chattogram\",\"BD-12\":\"Chuadanga\",\"BD-11\":\"Cox's Bazar\",\"BD-08\":\"Cumilla\",\"BD-13\":\"Dhaka\",\"BD-14\":\"Dinajpur\",\"BD-15\":\"Faridpur \",\"BD-16\":\"Feni\",\"BD-19\":\"Gaibandha\",\"BD-18\":\"Gazipur\",\"BD-17\":\"Gopalganj\",\"BD-20\":\"Habiganj\",\"BD-21\":\"Jamalpur\",\"BD-22\":\"Jashore\",\"BD-25\":\"Jhalokati\",\"BD-23\":\"Jhenaidah\",\"BD-24\":\"Joypurhat\",\"BD-29\":\"Khagrachhari\",\"BD-27\":\"Khulna\",\"BD-26\":\"Kishoreganj\",\"BD-28\":\"Kurigram\",\"BD-30\":\"Kushtia\",\"BD-31\":\"Lakshmipur\",\"BD-32\":\"Lalmonirhat\",\"BD-36\":\"Madaripur\",\"BD-37\":\"Magura\",\"BD-33\":\"Manikganj \",\"BD-39\":\"Meherpur\",\"BD-38\":\"Moulvibazar\",\"BD-35\":\"Munshiganj\",\"BD-34\":\"Mymensingh\",\"BD-48\":\"Naogaon\",\"BD-43\":\"Narail\",\"BD-40\":\"Narayanganj\",\"BD-42\":\"Narsingdi\",\"BD-44\":\"Natore\",\"BD-45\":\"Nawabganj\",\"BD-41\":\"Netrakona\",\"BD-46\":\"Nilphamari\",\"BD-47\":\"Noakhali\",\"BD-49\":\"Pabna\",\"BD-52\":\"Panchagarh\",\"BD-51\":\"Patuakhali\",\"BD-50\":\"Pirojpur\",\"BD-53\":\"Rajbari\",\"BD-54\":\"Rajshahi\",\"BD-56\":\"Rangamati\",\"BD-55\":\"Rangpur\",\"BD-58\":\"Satkhira\",\"BD-62\":\"Shariatpur\",\"BD-57\":\"Sherpur\",\"BD-59\":\"Sirajganj\",\"BD-61\":\"Sunamganj\",\"BD-60\":\"Sylhet\",\"BD-63\":\"Tangail\",\"BD-64\":\"Thakurgaon\"},\"BE\":[],\"BG\":{\"BG-01\":\"Blagoevgrad\",\"BG-02\":\"Burgas\",\"BG-08\":\"Dobrich\",\"BG-07\":\"Gabrovo\",\"BG-26\":\"Haskovo\",\"BG-09\":\"Kardzhali\",\"BG-10\":\"Kyustendil\",\"BG-11\":\"Lovech\",\"BG-12\":\"Montana\",\"BG-13\":\"Pazardzhik\",\"BG-14\":\"Pernik\",\"BG-15\":\"Pleven\",\"BG-16\":\"Plovdiv\",\"BG-17\":\"Razgrad\",\"BG-18\":\"Ruse\",\"BG-27\":\"Shumen\",\"BG-19\":\"Silistra\",\"BG-20\":\"Sliven\",\"BG-21\":\"Smolyan\",\"BG-23\":\"Sofia\",\"BG-22\":\"Sofia-Grad\",\"BG-24\":\"Stara Zagora\",\"BG-25\":\"Targovishte\",\"BG-03\":\"Varna\",\"BG-04\":\"Veliko Tarnovo\",\"BG-05\":\"Vidin\",\"BG-06\":\"Vratsa\",\"BG-28\":\"Yambol\"},\"BH\":[],\"BI\":[],\"BO\":{\"B\":\"Chuquisaca\",\"H\":\"Beni\",\"C\":\"Cochabamba\",\"L\":\"La Paz\",\"O\":\"Oruro\",\"N\":\"Pando\",\"P\":\"Potos\\u00ed\",\"S\":\"Santa Cruz\",\"T\":\"Tarija\"},\"BR\":{\"AC\":\"Acre\",\"AL\":\"Alagoas\",\"AP\":\"Amap\u00e1\",\"AM\":\"Amazonas\",\"BA\":\"Bahia\",\"CE\":\"Cear\u00e1\",\"DF\":\"Distrito Federal\",\"ES\":\"Esp\u00edrito Santo\",\"GO\":\"Goi\u00e1s\",\"MA\":\"Maranh\u00e3o\",\"MT\":\"Mato Grosso\",\"MS\":\"Mato Grosso do Sul\",\"MG\":\"Minas Gerais\",\"PA\":\"Par\u00e1\",\"PB\":\"Para\u00edba\",\"PR\":\"Paran\u00e1\",\"PE\":\"Pernambuco\",\"PI\":\"Piau\u00ed\",\"RJ\":\"Rio de Janeiro\",\"RN\":\"Rio Grande do Norte\",\"RS\":\"Rio Grande do Sul\",\"RO\":\"Rond\u00f4nia\",\"RR\":\"Roraima\",\"SC\":\"Santa Catarina\",\"SP\":\"S\u00e3o Paulo\",\"SE\":\"Sergipe\",\"TO\":\"Tocantins\"},\"CA\":{\"AB\":\"Alberta\",\"BC\":\"British Columbia\",\"MB\":\"Manitoba\",\"NB\":\"New Brunswick\",\"NL\":\"Newfoundland and Labrador\",\"NT\":\"Northwest Territories\",\"NS\":\"Nova Scotia\",\"NU\":\"Nunavut\",\"ON\":\"Ontario\",\"PE\":\"Prince Edward Island\",\"QC\":\"Quebec\",\"SK\":\"Saskatchewan\",\"YT\":\"Yukon Territory\"},\"CH\":{\"AG\":\"Aargau\",\"AR\":\"Appenzell Ausserrhoden\",\"AI\":\"Appenzell Innerrhoden\",\"BL\":\"Basel-Landschaft\",\"BS\":\"Basel-Stadt\",\"BE\":\"Bern\",\"FR\":\"Fribourg\",\"GE\":\"Geneva\",\"GL\":\"Glarus\",\"GR\":\"Graub\u00fcnden\",\"JU\":\"Jura\",\"LU\":\"Luzern\",\"NE\":\"Neuch\u00e2tel\",\"NW\":\"Nidwalden\",\"OW\":\"Obwalden\",\"SH\":\"Schaffhausen\",\"SZ\":\"Schwyz\",\"SO\":\"Solothurn\",\"SG\":\"St. Gallen\",\"TG\":\"Thurgau\",\"TI\":\"Ticino\",\"UR\":\"Uri\",\"VS\":\"Valais\",\"VD\":\"Vaud\",\"ZG\":\"Zug\",\"ZH\":\"Z\u00fcrich\"},\"CN\":{\"CN1\":\"Yunnan \\\/ \u4e91\u5357\",\"CN2\":\"Beijing \\\/ \u5317\u4eac\",\"CN3\":\"Tianjin \\\/ \u5929\u6d25\",\"CN4\":\"Hebei \\\/ \u6cb3\u5317\",\"CN5\":\"Shanxi \\\/ \u5c71\u897f\",\"CN6\":\"Inner Mongolia \\\/ \u5167\u8499\u53e4\",\"CN7\":\"Liaoning \\\/ \u8fbd\u5b81\",\"CN8\":\"Jilin \\\/ \u5409\u6797\",\"CN9\":\"Heilongjiang \\\/ \u9ed1\u9f99\u6c5f\",\"CN10\":\"Shanghai \\\/ \u4e0a\u6d77\",\"CN11\":\"Jiangsu \\\/ \u6c5f\u82cf\",\"CN12\":\"Zhejiang \\\/ \u6d59\u6c5f\",\"CN13\":\"Anhui \\\/ \u5b89\u5fbd\",\"CN14\":\"Fujian \\\/ \u798f\u5efa\",\"CN15\":\"Jiangxi \\\/ \u6c5f\u897f\",\"CN16\":\"Shandong \\\/ \u5c71\u4e1c\",\"CN17\":\"Henan \\\/ \u6cb3\u5357\",\"CN18\":\"Hubei \\\/ \u6e56\u5317\",\"CN19\":\"Hunan \\\/ \u6e56\u5357\",\"CN20\":\"Guangdong \\\/ \u5e7f\u4e1c\",\"CN21\":\"Guangxi Zhuang \\\/ \u5e7f\u897f\u58ee\u65cf\",\"CN22\":\"Hainan \\\/ \u6d77\u5357\",\"CN23\":\"Chongqing \\\/ \u91cd\u5e86\",\"CN24\":\"Sichuan \\\/ \u56db\u5ddd\",\"CN25\":\"Guizhou \\\/ \u8d35\u5dde\",\"CN26\":\"Shaanxi \\\/ \u9655\u897f\",\"CN27\":\"Gansu \\\/ \u7518\u8083\",\"CN28\":\"Qinghai \\\/ \u9752\u6d77\",\"CN29\":\"Ningxia Hui \\\/ \u5b81\u590f\",\"CN30\":\"Macau \\\/ \u6fb3\u95e8\",\"CN31\":\"Tibet \\\/ \u897f\u85cf\",\"CN32\":\"Xinjiang \\\/ \u65b0\u7586\"},\"CZ\":[],\"DE\":[],\"DK\":[],\"EE\":[],\"ES\":{\"C\":\"A Coru\u00f1a\",\"VI\":\"Araba\\\/\u00c1lava\",\"AB\":\"Albacete\",\"A\":\"Alicante\",\"AL\":\"Almer\u00eda\",\"O\":\"Asturias\",\"AV\":\"\u00c1vila\",\"BA\":\"Badajoz\",\"PM\":\"Baleares\",\"B\":\"Barcelona\",\"BU\":\"Burgos\",\"CC\":\"C\u00e1ceres\",\"CA\":\"C\u00e1diz\",\"S\":\"Cantabria\",\"CS\":\"Castell\u00f3n\",\"CE\":\"Ceuta\",\"CR\":\"Ciudad Real\",\"CO\":\"C\u00f3rdoba\",\"CU\":\"Cuenca\",\"GI\":\"Girona\",\"GR\":\"Granada\",\"GU\":\"Guadalajara\",\"SS\":\"Gipuzkoa\",\"H\":\"Huelva\",\"HU\":\"Huesca\",\"J\":\"Ja\u00e9n\",\"LO\":\"La Rioja\",\"GC\":\"Las Palmas\",\"LE\":\"Le\u00f3n\",\"L\":\"Lleida\",\"LU\":\"Lugo\",\"M\":\"Madrid\",\"MA\":\"M\u00e1laga\",\"ML\":\"Melilla\",\"MU\":\"Murcia\",\"NA\":\"Navarra\",\"OR\":\"Ourense\",\"P\":\"Palencia\",\"PO\":\"Pontevedra\",\"SA\":\"Salamanca\",\"TF\":\"Santa Cruz de Tenerife\",\"SG\":\"Segovia\",\"SE\":\"Sevilla\",\"SO\":\"Soria\",\"T\":\"Tarragona\",\"TE\":\"Teruel\",\"TO\":\"Toledo\",\"V\":\"Valencia\",\"VA\":\"Valladolid\",\"BI\":\"Bizkaia\",\"ZA\":\"Zamora\",\"Z\":\"Zaragoza\"},\"FI\":[],\"FR\":[],\"GP\":[],\"GR\":{\"I\":\"\\u0391\\u03c4\\u03c4\\u03b9\\u03ba\\u03ae\",\"A\":\"\\u0391\\u03bd\\u03b1\\u03c4\\u03bf\\u03bb\\u03b9\\u03ba\\u03ae \\u039c\\u03b1\\u03ba\\u03b5\\u03b4\\u03bf\\u03bd\\u03af\\u03b1 \\u03ba\\u03b1\\u03b9 \\u0398\\u03c1\\u03ac\\u03ba\\u03b7\",\"B\":\"\\u039a\\u03b5\\u03bd\\u03c4\\u03c1\\u03b9\\u03ba\\u03ae \\u039c\\u03b1\\u03ba\\u03b5\\u03b4\\u03bf\\u03bd\\u03af\\u03b1\",\"C\":\"\\u0394\\u03c5\\u03c4\\u03b9\\u03ba\\u03ae \\u039c\\u03b1\\u03ba\\u03b5\\u03b4\\u03bf\\u03bd\\u03af\\u03b1\",\"D\":\"\\u0389\\u03c0\\u03b5\\u03b9\\u03c1\\u03bf\\u03c2\",\"E\":\"\\u0398\\u03b5\\u03c3\\u03c3\\u03b1\\u03bb\\u03af\\u03b1\",\"F\":\"\\u0399\\u03cc\\u03bd\\u03b9\\u03bf\\u03b9 \\u039d\\u03ae\\u03c3\\u03bf\\u03b9\",\"G\":\"\\u0394\\u03c5\\u03c4\\u03b9\\u03ba\\u03ae \\u0395\\u03bb\\u03bb\\u03ac\\u03b4\\u03b1\",\"H\":\"\\u03a3\\u03c4\\u03b5\\u03c1\\u03b5\\u03ac \\u0395\\u03bb\\u03bb\\u03ac\\u03b4\\u03b1\",\"J\":\"\\u03a0\\u03b5\\u03bb\\u03bf\\u03c0\\u03cc\\u03bd\\u03bd\\u03b7\\u03c3\\u03bf\\u03c2\",\"K\":\"\\u0392\\u03cc\\u03c1\\u03b5\\u03b9\\u03bf \\u0391\\u03b9\\u03b3\\u03b1\\u03af\\u03bf\",\"L\":\"\\u039d\\u03cc\\u03c4\\u03b9\\u03bf \\u0391\\u03b9\\u03b3\\u03b1\\u03af\\u03bf\",\"M\":\"\\u039a\\u03c1\\u03ae\\u03c4\\u03b7\"},\"GF\":[],\"HK\":{\"HONG KONG\":\"Hong Kong Island\",\"KOWLOON\":\"Kowloon\",\"NEW TERRITORIES\":\"New Territories\"},\"HU\":{\"BK\":\"B\\u00e1cs-Kiskun\",\"BE\":\"B\\u00e9k\\u00e9s\",\"BA\":\"Baranya\",\"BZ\":\"Borsod-Aba\\u00faj-Zempl\\u00e9n\",\"BU\":\"Budapest\",\"CS\":\"Csongr\\u00e1d\",\"FE\":\"Fej\\u00e9r\",\"GS\":\"Gy\\u0151r-Moson-Sopron\",\"HB\":\"Hajd\\u00fa-Bihar\",\"HE\":\"Heves\",\"JN\":\"J\\u00e1sz-Nagykun-Szolnok\",\"KE\":\"Kom\\u00e1rom-Esztergom\",\"NO\":\"N\\u00f3gr\\u00e1d\",\"PE\":\"Pest\",\"SO\":\"Somogy\",\"SZ\":\"Szabolcs-Szatm\\u00e1r-Bereg\",\"TO\":\"Tolna\",\"VA\":\"Vas\",\"VE\":\"Veszpr\\u00e9m\",\"ZA\":\"Zala\"},\"ID\":{\"AC\":\"Daerah Istimewa Aceh\",\"SU\":\"Sumatera Utara\",\"SB\":\"Sumatera Barat\",\"RI\":\"Riau\",\"KR\":\"Kepulauan Riau\",\"JA\":\"Jambi\",\"SS\":\"Sumatera Selatan\",\"BB\":\"Bangka Belitung\",\"BE\":\"Bengkulu\",\"LA\":\"Lampung\",\"JK\":\"DKI Jakarta\",\"JB\":\"Jawa Barat\",\"BT\":\"Banten\",\"JT\":\"Jawa Tengah\",\"JI\":\"Jawa Timur\",\"YO\":\"Daerah Istimewa Yogyakarta\",\"BA\":\"Bali\",\"NB\":\"Nusa Tenggara Barat\",\"NT\":\"Nusa Tenggara Timur\",\"KB\":\"Kalimantan Barat\",\"KT\":\"Kalimantan Tengah\",\"KI\":\"Kalimantan Timur\",\"KS\":\"Kalimantan Selatan\",\"KU\":\"Kalimantan Utara\",\"SA\":\"Sulawesi Utara\",\"ST\":\"Sulawesi Tengah\",\"SG\":\"Sulawesi Tenggara\",\"SR\":\"Sulawesi Barat\",\"SN\":\"Sulawesi Selatan\",\"GO\":\"Gorontalo\",\"MA\":\"Maluku\",\"MU\":\"Maluku Utara\",\"PA\":\"Papua\",\"PB\":\"Papua Barat\"},\"IE\":{\"CW\":\"Carlow\",\"CN\":\"Cavan\",\"CE\":\"Clare\",\"CO\":\"Cork\",\"DL\":\"Donegal\",\"D\":\"Dublin\",\"G\":\"Galway\",\"KY\":\"Kerry\",\"KE\":\"Kildare\",\"KK\":\"Kilkenny\",\"LS\":\"Laois\",\"LM\":\"Leitrim\",\"LK\":\"Limerick\",\"LD\":\"Longford\",\"LH\":\"Louth\",\"MO\":\"Mayo\",\"MH\":\"Meath\",\"MN\":\"Monaghan\",\"OY\":\"Offaly\",\"RN\":\"Roscommon\",\"SO\":\"Sligo\",\"TA\":\"Tipperary\",\"WD\":\"Waterford\",\"WH\":\"Westmeath\",\"WX\":\"Wexford\",\"WW\":\"Wicklow\"},\"IN\":{\"AP\":\"Andhra Pradesh\",\"AR\":\"Arunachal Pradesh\",\"AS\":\"Assam\",\"BR\":\"Bihar\",\"CT\":\"Chhattisgarh\",\"GA\":\"Goa\",\"GJ\":\"Gujarat\",\"HR\":\"Haryana\",\"HP\":\"Himachal Pradesh\",\"JK\":\"Jammu and Kashmir\",\"JH\":\"Jharkhand\",\"KA\":\"Karnataka\",\"KL\":\"Kerala\",\"MP\":\"Madhya Pradesh\",\"MH\":\"Maharashtra\",\"MN\":\"Manipur\",\"ML\":\"Meghalaya\",\"MZ\":\"Mizoram\",\"NL\":\"Nagaland\",\"OR\":\"Orissa\",\"PB\":\"Punjab\",\"RJ\":\"Rajasthan\",\"SK\":\"Sikkim\",\"TN\":\"Tamil Nadu\",\"TS\":\"Telangana\",\"TR\":\"Tripura\",\"UK\":\"Uttarakhand\",\"UP\":\"Uttar Pradesh\",\"WB\":\"West Bengal\",\"AN\":\"Andaman and Nicobar Islands\",\"CH\":\"Chandigarh\",\"DN\":\"Dadra and Nagar Haveli\",\"DD\":\"Daman and Diu\",\"DL\":\"Delhi\",\"LD\":\"Lakshadeep\",\"PY\":\"Pondicherry (Puducherry)\"},\"IR\":{\"KHZ\":\"Khuzestan  (\\u062e\\u0648\\u0632\\u0633\\u062a\\u0627\\u0646)\",\"THR\":\"Tehran  (\\u062a\\u0647\\u0631\\u0627\\u0646)\",\"ILM\":\"Ilaam (\\u0627\\u06cc\\u0644\\u0627\\u0645)\",\"BHR\":\"Bushehr (\\u0628\\u0648\\u0634\\u0647\\u0631)\",\"ADL\":\"Ardabil (\\u0627\\u0631\\u062f\\u0628\\u06cc\\u0644)\",\"ESF\":\"Isfahan (\\u0627\\u0635\\u0641\\u0647\\u0627\\u0646)\",\"YZD\":\"Yazd (\\u06cc\\u0632\\u062f)\",\"KRH\":\"Kermanshah (\\u06a9\\u0631\\u0645\\u0627\\u0646\\u0634\\u0627\\u0647)\",\"KRN\":\"Kerman (\\u06a9\\u0631\\u0645\\u0627\\u0646)\",\"HDN\":\"Hamadan (\\u0647\\u0645\\u062f\\u0627\\u0646)\",\"GZN\":\"Ghazvin (\\u0642\\u0632\\u0648\\u06cc\\u0646)\",\"ZJN\":\"Zanjan (\\u0632\\u0646\\u062c\\u0627\\u0646)\",\"LRS\":\"Luristan (\\u0644\\u0631\\u0633\\u062a\\u0627\\u0646)\",\"ABZ\":\"Alborz (\\u0627\\u0644\\u0628\\u0631\\u0632)\",\"EAZ\":\"East Azarbaijan (\\u0622\\u0630\\u0631\\u0628\\u0627\\u06cc\\u062c\\u0627\\u0646 \\u0634\\u0631\\u0642\\u06cc)\",\"WAZ\":\"West Azarbaijan (\\u0622\\u0630\\u0631\\u0628\\u0627\\u06cc\\u062c\\u0627\\u0646 \\u063a\\u0631\\u0628\\u06cc)\",\"CHB\":\"Chaharmahal and Bakhtiari (\\u0686\\u0647\\u0627\\u0631\\u0645\\u062d\\u0627\\u0644 \\u0648 \\u0628\\u062e\\u062a\\u06cc\\u0627\\u0631\\u06cc)\",\"SKH\":\"South Khorasan (\\u062e\\u0631\\u0627\\u0633\\u0627\\u0646 \\u062c\\u0646\\u0648\\u0628\\u06cc)\",\"RKH\":\"Razavi Khorasan (\\u062e\\u0631\\u0627\\u0633\\u0627\\u0646 \\u0631\\u0636\\u0648\\u06cc)\",\"NKH\":\"North Khorasan (\\u062e\\u0631\\u0627\\u0633\\u0627\\u0646 \\u0634\\u0645\\u0627\\u0644\\u06cc)\",\"SMN\":\"Semnan (\\u0633\\u0645\\u0646\\u0627\\u0646)\",\"FRS\":\"Fars (\\u0641\\u0627\\u0631\\u0633)\",\"QHM\":\"Qom (\\u0642\\u0645)\",\"KRD\":\"Kurdistan \\\/ \\u06a9\\u0631\\u062f\\u0633\\u062a\\u0627\\u0646)\",\"KBD\":\"Kohgiluyeh and BoyerAhmad (\\u06a9\\u0647\\u06af\\u06cc\\u0644\\u0648\\u06cc\\u06cc\\u0647 \\u0648 \\u0628\\u0648\\u06cc\\u0631\\u0627\\u062d\\u0645\\u062f)\",\"GLS\":\"Golestan (\\u06af\\u0644\\u0633\\u062a\\u0627\\u0646)\",\"GIL\":\"Gilan (\\u06af\\u06cc\\u0644\\u0627\\u0646)\",\"MZN\":\"Mazandaran (\\u0645\\u0627\\u0632\\u0646\\u062f\\u0631\\u0627\\u0646)\",\"MKZ\":\"Markazi (\\u0645\\u0631\\u06a9\\u0632\\u06cc)\",\"HRZ\":\"Hormozgan (\\u0647\\u0631\\u0645\\u0632\\u06af\\u0627\\u0646)\",\"SBN\":\"Sistan and Baluchestan (\\u0633\\u06cc\\u0633\\u062a\\u0627\\u0646 \\u0648 \\u0628\\u0644\\u0648\\u0686\\u0633\\u062a\\u0627\\u0646)\"},\"IS\":[],\"IT\":{\"AG\":\"Agrigento\",\"AL\":\"Alessandria\",\"AN\":\"Ancona\",\"AO\":\"Aosta\",\"AR\":\"Arezzo\",\"AP\":\"Ascoli Piceno\",\"AT\":\"Asti\",\"AV\":\"Avellino\",\"BA\":\"Bari\",\"BT\":\"Barletta-Andria-Trani\",\"BL\":\"Belluno\",\"BN\":\"Benevento\",\"BG\":\"Bergamo\",\"BI\":\"Biella\",\"BO\":\"Bologna\",\"BZ\":\"Bolzano\",\"BS\":\"Brescia\",\"BR\":\"Brindisi\",\"CA\":\"Cagliari\",\"CL\":\"Caltanissetta\",\"CB\":\"Campobasso\",\"CE\":\"Caserta\",\"CT\":\"Catania\",\"CZ\":\"Catanzaro\",\"CH\":\"Chieti\",\"CO\":\"Como\",\"CS\":\"Cosenza\",\"CR\":\"Cremona\",\"KR\":\"Crotone\",\"CN\":\"Cuneo\",\"EN\":\"Enna\",\"FM\":\"Fermo\",\"FE\":\"Ferrara\",\"FI\":\"Firenze\",\"FG\":\"Foggia\",\"FC\":\"Forl\\u00ec-Cesena\",\"FR\":\"Frosinone\",\"GE\":\"Genova\",\"GO\":\"Gorizia\",\"GR\":\"Grosseto\",\"IM\":\"Imperia\",\"IS\":\"Isernia\",\"SP\":\"La Spezia\",\"AQ\":\"L'Aquila\",\"LT\":\"Latina\",\"LE\":\"Lecce\",\"LC\":\"Lecco\",\"LI\":\"Livorno\",\"LO\":\"Lodi\",\"LU\":\"Lucca\",\"MC\":\"Macerata\",\"MN\":\"Mantova\",\"MS\":\"Massa-Carrara\",\"MT\":\"Matera\",\"ME\":\"Messina\",\"MI\":\"Milano\",\"MO\":\"Modena\",\"MB\":\"Monza e della Brianza\",\"NA\":\"Napoli\",\"NO\":\"Novara\",\"NU\":\"Nuoro\",\"OR\":\"Oristano\",\"PD\":\"Padova\",\"PA\":\"Palermo\",\"PR\":\"Parma\",\"PV\":\"Pavia\",\"PG\":\"Perugia\",\"PU\":\"Pesaro e Urbino\",\"PE\":\"Pescara\",\"PC\":\"Piacenza\",\"PI\":\"Pisa\",\"PT\":\"Pistoia\",\"PN\":\"Pordenone\",\"PZ\":\"Potenza\",\"PO\":\"Prato\",\"RG\":\"Ragusa\",\"RA\":\"Ravenna\",\"RC\":\"Reggio Calabria\",\"RE\":\"Reggio Emilia\",\"RI\":\"Rieti\",\"RN\":\"Rimini\",\"RM\":\"Roma\",\"RO\":\"Rovigo\",\"SA\":\"Salerno\",\"SS\":\"Sassari\",\"SV\":\"Savona\",\"SI\":\"Siena\",\"SR\":\"Siracusa\",\"SO\":\"Sondrio\",\"SU\":\"Sud Sardegna\",\"TA\":\"Taranto\",\"TE\":\"Teramo\",\"TR\":\"Terni\",\"TO\":\"Torino\",\"TP\":\"Trapani\",\"TN\":\"Trento\",\"TV\":\"Treviso\",\"TS\":\"Trieste\",\"UD\":\"Udine\",\"VA\":\"Varese\",\"VE\":\"Venezia\",\"VB\":\"Verbano-Cusio-Ossola\",\"VC\":\"Vercelli\",\"VR\":\"Verona\",\"VV\":\"Vibo Valentia\",\"VI\":\"Vicenza\",\"VT\":\"Viterbo\"},\"IL\":[],\"IM\":[],\"JP\":{\"JP01\":\"Hokkaido\",\"JP02\":\"Aomori\",\"JP03\":\"Iwate\",\"JP04\":\"Miyagi\",\"JP05\":\"Akita\",\"JP06\":\"Yamagata\",\"JP07\":\"Fukushima\",\"JP08\":\"Ibaraki\",\"JP09\":\"Tochigi\",\"JP10\":\"Gunma\",\"JP11\":\"Saitama\",\"JP12\":\"Chiba\",\"JP13\":\"Tokyo\",\"JP14\":\"Kanagawa\",\"JP15\":\"Niigata\",\"JP16\":\"Toyama\",\"JP17\":\"Ishikawa\",\"JP18\":\"Fukui\",\"JP19\":\"Yamanashi\",\"JP20\":\"Nagano\",\"JP21\":\"Gifu\",\"JP22\":\"Shizuoka\",\"JP23\":\"Aichi\",\"JP24\":\"Mie\",\"JP25\":\"Shiga\",\"JP26\":\"Kyoto\",\"JP27\":\"Osaka\",\"JP28\":\"Hyogo\",\"JP29\":\"Nara\",\"JP30\":\"Wakayama\",\"JP31\":\"Tottori\",\"JP32\":\"Shimane\",\"JP33\":\"Okayama\",\"JP34\":\"Hiroshima\",\"JP35\":\"Yamaguchi\",\"JP36\":\"Tokushima\",\"JP37\":\"Kagawa\",\"JP38\":\"Ehime\",\"JP39\":\"Kochi\",\"JP40\":\"Fukuoka\",\"JP41\":\"Saga\",\"JP42\":\"Nagasaki\",\"JP43\":\"Kumamoto\",\"JP44\":\"Oita\",\"JP45\":\"Miyazaki\",\"JP46\":\"Kagoshima\",\"JP47\":\"Okinawa\"},\"KR\":[],\"KW\":[],\"LB\":[],\"LR\":{\"BM\":\"Bomi\",\"BN\":\"Bong\",\"GA\":\"Gbarpolu\",\"GB\":\"Grand Bassa\",\"GC\":\"Grand Cape Mount\",\"GG\":\"Grand Gedeh\",\"GK\":\"Grand Kru\",\"LO\":\"Lofa\",\"MA\":\"Margibi\",\"MY\":\"Maryland\",\"MO\":\"Montserrado\",\"NM\":\"Nimba\",\"RV\":\"Rivercess\",\"RG\":\"River Gee\",\"SN\":\"Sinoe\"},\"LU\":[],\"MD\":{\"C\":\"Chi\u0219in\u0103u\",\"BL\":\"B\u0103l\u021bi\",\"AN\":\"Anenii Noi\",\"BS\":\"Basarabeasca\",\"BR\":\"Briceni\",\"CH\":\"Cahul\",\"CT\":\"Cantemir\",\"CL\":\"C\u0103l\u0103ra\u0219i\",\"CS\":\"C\u0103u\u0219eni\",\"CM\":\"Cimi\u0219lia\",\"CR\":\"Criuleni\",\"DN\":\"Dondu\u0219eni\",\"DR\":\"Drochia\",\"DB\":\"Dub\u0103sari\",\"ED\":\"Edine\u021b\",\"FL\":\"F\u0103le\u0219ti\",\"FR\":\"Flore\u0219ti\",\"GE\":\"UTA G\u0103g\u0103uzia\",\"GL\":\"Glodeni\",\"HN\":\"H\u00eence\u0219ti\",\"IL\":\"Ialoveni\",\"LV\":\"Leova\",\"NS\":\"Nisporeni\",\"OC\":\"Ocni\u021ba\",\"OR\":\"Orhei\",\"RZ\":\"Rezina\",\"RS\":\"R\u00ee\u0219cani\",\"SG\":\"S\u00eengerei\",\"SR\":\"Soroca\",\"ST\":\"Str\u0103\u0219eni\",\"SD\":\"\u0218old\u0103ne\u0219ti\",\"SV\":\"\u0218tefan Vod\u0103\",\"TR\":\"Taraclia\",\"TL\":\"Telene\u0219ti\",\"UN\":\"Ungheni\"},\"MQ\":[],\"MT\":[],\"MX\":{\"DF\":\"Ciudad de M\u00e9xico\",\"JA\":\"Jalisco\",\"NL\":\"Nuevo Le\u00f3n\",\"AG\":\"Aguascalientes\",\"BC\":\"Baja California\",\"BS\":\"Baja California Sur\",\"CM\":\"Campeche\",\"CS\":\"Chiapas\",\"CH\":\"Chihuahua\",\"CO\":\"Coahuila\",\"CL\":\"Colima\",\"DG\":\"Durango\",\"GT\":\"Guanajuato\",\"GR\":\"Guerrero\",\"HG\":\"Hidalgo\",\"MX\":\"Estado de M\u00e9xico\",\"MI\":\"Michoac\u00e1n\",\"MO\":\"Morelos\",\"NA\":\"Nayarit\",\"OA\":\"Oaxaca\",\"PU\":\"Puebla\",\"QT\":\"Quer\u00e9taro\",\"QR\":\"Quintana Roo\",\"SL\":\"San Luis Potos\u00ed\",\"SI\":\"Sinaloa\",\"SO\":\"Sonora\",\"TB\":\"Tabasco\",\"TM\":\"Tamaulipas\",\"TL\":\"Tlaxcala\",\"VE\":\"Veracruz\",\"YU\":\"Yucat\u00e1n\",\"ZA\":\"Zacatecas\"},\"MY\":{\"JHR\":\"Johor\",\"KDH\":\"Kedah\",\"KTN\":\"Kelantan\",\"LBN\":\"Labuan\",\"MLK\":\"Malacca (Melaka)\",\"NSN\":\"Negeri Sembilan\",\"PHG\":\"Pahang\",\"PNG\":\"Penang (Pulau Pinang)\",\"PRK\":\"Perak\",\"PLS\":\"Perlis\",\"SBH\":\"Sabah\",\"SWK\":\"Sarawak\",\"SGR\":\"Selangor\",\"TRG\":\"Terengganu\",\"PJY\":\"Putrajaya\",\"KUL\":\"Kuala Lumpur\"},\"NG\":{\"AB\":\"Abia\",\"FC\":\"Abuja\",\"AD\":\"Adamawa\",\"AK\":\"Akwa Ibom\",\"AN\":\"Anambra\",\"BA\":\"Bauchi\",\"BY\":\"Bayelsa\",\"BE\":\"Benue\",\"BO\":\"Borno\",\"CR\":\"Cross River\",\"DE\":\"Delta\",\"EB\":\"Ebonyi\",\"ED\":\"Edo\",\"EK\":\"Ekiti\",\"EN\":\"Enugu\",\"GO\":\"Gombe\",\"IM\":\"Imo\",\"JI\":\"Jigawa\",\"KD\":\"Kaduna\",\"KN\":\"Kano\",\"KT\":\"Katsina\",\"KE\":\"Kebbi\",\"KO\":\"Kogi\",\"KW\":\"Kwara\",\"LA\":\"Lagos\",\"NA\":\"Nasarawa\",\"NI\":\"Niger\",\"OG\":\"Ogun\",\"ON\":\"Ondo\",\"OS\":\"Osun\",\"OY\":\"Oyo\",\"PL\":\"Plateau\",\"RI\":\"Rivers\",\"SO\":\"Sokoto\",\"TA\":\"Taraba\",\"YO\":\"Yobe\",\"ZA\":\"Zamfara\"},\"NL\":[],\"NO\":[],\"NP\":{\"BAG\":\"Bagmati\",\"BHE\":\"Bheri\",\"DHA\":\"Dhaulagiri\",\"GAN\":\"Gandaki\",\"JAN\":\"Janakpur\",\"KAR\":\"Karnali\",\"KOS\":\"Koshi\",\"LUM\":\"Lumbini\",\"MAH\":\"Mahakali\",\"MEC\":\"Mechi\",\"NAR\":\"Narayani\",\"RAP\":\"Rapti\",\"SAG\":\"Sagarmatha\",\"SET\":\"Seti\"},\"NZ\":{\"NL\":\"Northland\",\"AK\":\"Auckland\",\"WA\":\"Waikato\",\"BP\":\"Bay of Plenty\",\"TK\":\"Taranaki\",\"GI\":\"Gisborne\",\"HB\":\"Hawke\u2019s Bay\",\"MW\":\"Manawatu-Wanganui\",\"WE\":\"Wellington\",\"NS\":\"Nelson\",\"MB\":\"Marlborough\",\"TM\":\"Tasman\",\"WC\":\"West Coast\",\"CT\":\"Canterbury\",\"OT\":\"Otago\",\"SL\":\"Southland\"},\"PE\":{\"CAL\":\"El Callao\",\"LMA\":\"Municipalidad Metropolitana de Lima\",\"AMA\":\"Amazonas\",\"ANC\":\"Ancash\",\"APU\":\"Apur\u00edmac\",\"ARE\":\"Arequipa\",\"AYA\":\"Ayacucho\",\"CAJ\":\"Cajamarca\",\"CUS\":\"Cusco\",\"HUV\":\"Huancavelica\",\"HUC\":\"Hu\u00e1nuco\",\"ICA\":\"Ica\",\"JUN\":\"Jun\u00edn\",\"LAL\":\"La Libertad\",\"LAM\":\"Lambayeque\",\"LIM\":\"Lima\",\"LOR\":\"Loreto\",\"MDD\":\"Madre de Dios\",\"MOQ\":\"Moquegua\",\"PAS\":\"Pasco\",\"PIU\":\"Piura\",\"PUN\":\"Puno\",\"SAM\":\"San Mart\u00edn\",\"TAC\":\"Tacna\",\"TUM\":\"Tumbes\",\"UCA\":\"Ucayali\"},\"PH\":{\"ABR\":\"Abra\",\"AGN\":\"Agusan del Norte\",\"AGS\":\"Agusan del Sur\",\"AKL\":\"Aklan\",\"ALB\":\"Albay\",\"ANT\":\"Antique\",\"APA\":\"Apayao\",\"AUR\":\"Aurora\",\"BAS\":\"Basilan\",\"BAN\":\"Bataan\",\"BTN\":\"Batanes\",\"BTG\":\"Batangas\",\"BEN\":\"Benguet\",\"BIL\":\"Biliran\",\"BOH\":\"Bohol\",\"BUK\":\"Bukidnon\",\"BUL\":\"Bulacan\",\"CAG\":\"Cagayan\",\"CAN\":\"Camarines Norte\",\"CAS\":\"Camarines Sur\",\"CAM\":\"Camiguin\",\"CAP\":\"Capiz\",\"CAT\":\"Catanduanes\",\"CAV\":\"Cavite\",\"CEB\":\"Cebu\",\"COM\":\"Compostela Valley\",\"NCO\":\"Cotabato\",\"DAV\":\"Davao del Norte\",\"DAS\":\"Davao del Sur\",\"DAC\":\"Davao Occidental\",\"DAO\":\"Davao Oriental\",\"DIN\":\"Dinagat Islands\",\"EAS\":\"Eastern Samar\",\"GUI\":\"Guimaras\",\"IFU\":\"Ifugao\",\"ILN\":\"Ilocos Norte\",\"ILS\":\"Ilocos Sur\",\"ILI\":\"Iloilo\",\"ISA\":\"Isabela\",\"KAL\":\"Kalinga\",\"LUN\":\"La Union\",\"LAG\":\"Laguna\",\"LAN\":\"Lanao del Norte\",\"LAS\":\"Lanao del Sur\",\"LEY\":\"Leyte\",\"MAG\":\"Maguindanao\",\"MAD\":\"Marinduque\",\"MAS\":\"Masbate\",\"MSC\":\"Misamis Occidental\",\"MSR\":\"Misamis Oriental\",\"MOU\":\"Mountain Province\",\"NEC\":\"Negros Occidental\",\"NER\":\"Negros Oriental\",\"NSA\":\"Northern Samar\",\"NUE\":\"Nueva Ecija\",\"NUV\":\"Nueva Vizcaya\",\"MDC\":\"Occidental Mindoro\",\"MDR\":\"Oriental Mindoro\",\"PLW\":\"Palawan\",\"PAM\":\"Pampanga\",\"PAN\":\"Pangasinan\",\"QUE\":\"Quezon\",\"QUI\":\"Quirino\",\"RIZ\":\"Rizal\",\"ROM\":\"Romblon\",\"WSA\":\"Samar\",\"SAR\":\"Sarangani\",\"SIQ\":\"Siquijor\",\"SOR\":\"Sorsogon\",\"SCO\":\"South Cotabato\",\"SLE\":\"Southern Leyte\",\"SUK\":\"Sultan Kudarat\",\"SLU\":\"Sulu\",\"SUN\":\"Surigao del Norte\",\"SUR\":\"Surigao del Sur\",\"TAR\":\"Tarlac\",\"TAW\":\"Tawi-Tawi\",\"ZMB\":\"Zambales\",\"ZAN\":\"Zamboanga del Norte\",\"ZAS\":\"Zamboanga del Sur\",\"ZSI\":\"Zamboanga Sibugay\",\"00\":\"Metro Manila\"},\"PK\":{\"JK\":\"Azad Kashmir\",\"BA\":\"Balochistan\",\"TA\":\"FATA\",\"GB\":\"Gilgit Baltistan\",\"IS\":\"Islamabad Capital Territory\",\"KP\":\"Khyber Pakhtunkhwa\",\"PB\":\"Punjab\",\"SD\":\"Sindh\"},\"PL\":[],\"PT\":[],\"PY\":{\"PY-ASU\":\"Asunci\u00f3n\",\"PY-1\":\"Concepci\u00f3n\",\"PY-2\":\"San Pedro\",\"PY-3\":\"Cordillera\",\"PY-4\":\"Guair\u00e1\",\"PY-5\":\"Caaguaz\u00fa\",\"PY-6\":\"Caazap\u00e1\",\"PY-7\":\"Itap\u00faa\",\"PY-8\":\"Misiones\",\"PY-9\":\"Paraguar\u00ed\",\"PY-10\":\"Alto Paran\u00e1\",\"PY-11\":\"Central\",\"PY-12\":\"\u00d1eembuc\u00fa\",\"PY-13\":\"Amambay\",\"PY-14\":\"Canindey\u00fa\",\"PY-15\":\"Presidente Hayes\",\"PY-16\":\"Alto Paraguay\",\"PY-17\":\"Boquer\u00f3n\"},\"RE\":[],\"RO\":{\"AB\":\"Alba\",\"AR\":\"Arad\",\"AG\":\"Arge\u0219\",\"BC\":\"Bac\u0103u\",\"BH\":\"Bihor\",\"BN\":\"Bistri\u021ba-N\u0103s\u0103ud\",\"BT\":\"Boto\u0219ani\",\"BR\":\"Br\u0103ila\",\"BV\":\"Bra\u0219ov\",\"B\":\"Bucure\u0219ti\",\"BZ\":\"Buz\u0103u\",\"CL\":\"C\u0103l\u0103ra\u0219i\",\"CS\":\"Cara\u0219-Severin\",\"CJ\":\"Cluj\",\"CT\":\"Constan\u021ba\",\"CV\":\"Covasna\",\"DB\":\"D\u00e2mbovi\u021ba\",\"DJ\":\"Dolj\",\"GL\":\"Gala\u021bi\",\"GR\":\"Giurgiu\",\"GJ\":\"Gorj\",\"HR\":\"Harghita\",\"HD\":\"Hunedoara\",\"IL\":\"Ialomi\u021ba\",\"IS\":\"Ia\u0219i\",\"IF\":\"Ilfov\",\"MM\":\"Maramure\u0219\",\"MH\":\"Mehedin\u021bi\",\"MS\":\"Mure\u0219\",\"NT\":\"Neam\u021b\",\"OT\":\"Olt\",\"PH\":\"Prahova\",\"SJ\":\"S\u0103laj\",\"SM\":\"Satu Mare\",\"SB\":\"Sibiu\",\"SV\":\"Suceava\",\"TR\":\"Teleorman\",\"TM\":\"Timi\u0219\",\"TL\":\"Tulcea\",\"VL\":\"V\u00e2lcea\",\"VS\":\"Vaslui\",\"VN\":\"Vrancea\"},\"RS\":[],\"SG\":[],\"SK\":[],\"SI\":[],\"TH\":{\"TH-37\":\"Amnat Charoen\",\"TH-15\":\"Ang Thong\",\"TH-14\":\"Ayutthaya\",\"TH-10\":\"Bangkok\",\"TH-38\":\"Bueng Kan\",\"TH-31\":\"Buri Ram\",\"TH-24\":\"Chachoengsao\",\"TH-18\":\"Chai Nat\",\"TH-36\":\"Chaiyaphum\",\"TH-22\":\"Chanthaburi\",\"TH-50\":\"Chiang Mai\",\"TH-57\":\"Chiang Rai\",\"TH-20\":\"Chonburi\",\"TH-86\":\"Chumphon\",\"TH-46\":\"Kalasin\",\"TH-62\":\"Kamphaeng Phet\",\"TH-71\":\"Kanchanaburi\",\"TH-40\":\"Khon Kaen\",\"TH-81\":\"Krabi\",\"TH-52\":\"Lampang\",\"TH-51\":\"Lamphun\",\"TH-42\":\"Loei\",\"TH-16\":\"Lopburi\",\"TH-58\":\"Mae Hong Son\",\"TH-44\":\"Maha Sarakham\",\"TH-49\":\"Mukdahan\",\"TH-26\":\"Nakhon Nayok\",\"TH-73\":\"Nakhon Pathom\",\"TH-48\":\"Nakhon Phanom\",\"TH-30\":\"Nakhon Ratchasima\",\"TH-60\":\"Nakhon Sawan\",\"TH-80\":\"Nakhon Si Thammarat\",\"TH-55\":\"Nan\",\"TH-96\":\"Narathiwat\",\"TH-39\":\"Nong Bua Lam Phu\",\"TH-43\":\"Nong Khai\",\"TH-12\":\"Nonthaburi\",\"TH-13\":\"Pathum Thani\",\"TH-94\":\"Pattani\",\"TH-82\":\"Phang Nga\",\"TH-93\":\"Phatthalung\",\"TH-56\":\"Phayao\",\"TH-67\":\"Phetchabun\",\"TH-76\":\"Phetchaburi\",\"TH-66\":\"Phichit\",\"TH-65\":\"Phitsanulok\",\"TH-54\":\"Phrae\",\"TH-83\":\"Phuket\",\"TH-25\":\"Prachin Buri\",\"TH-77\":\"Prachuap Khiri Khan\",\"TH-85\":\"Ranong\",\"TH-70\":\"Ratchaburi\",\"TH-21\":\"Rayong\",\"TH-45\":\"Roi Et\",\"TH-27\":\"Sa Kaeo\",\"TH-47\":\"Sakon Nakhon\",\"TH-11\":\"Samut Prakan\",\"TH-74\":\"Samut Sakhon\",\"TH-75\":\"Samut Songkhram\",\"TH-19\":\"Saraburi\",\"TH-91\":\"Satun\",\"TH-17\":\"Sing Buri\",\"TH-33\":\"Sisaket\",\"TH-90\":\"Songkhla\",\"TH-64\":\"Sukhothai\",\"TH-72\":\"Suphan Buri\",\"TH-84\":\"Surat Thani\",\"TH-32\":\"Surin\",\"TH-63\":\"Tak\",\"TH-92\":\"Trang\",\"TH-23\":\"Trat\",\"TH-34\":\"Ubon Ratchathani\",\"TH-41\":\"Udon Thani\",\"TH-61\":\"Uthai Thani\",\"TH-53\":\"Uttaradit\",\"TH-95\":\"Yala\",\"TH-35\":\"Yasothon\"},\"TR\":{\"TR01\":\"Adana\",\"TR02\":\"Ad\u0131yaman\",\"TR03\":\"Afyon\",\"TR04\":\"A\u011fr\u0131\",\"TR05\":\"Amasya\",\"TR06\":\"Ankara\",\"TR07\":\"Antalya\",\"TR08\":\"Artvin\",\"TR09\":\"Ayd\u0131n\",\"TR10\":\"Bal\u0131kesir\",\"TR11\":\"Bilecik\",\"TR12\":\"Bing\u00f6l\",\"TR13\":\"Bitlis\",\"TR14\":\"Bolu\",\"TR15\":\"Burdur\",\"TR16\":\"Bursa\",\"TR17\":\"\u00c7anakkale\",\"TR18\":\"\u00c7ank\u0131r\u0131\",\"TR19\":\"\u00c7orum\",\"TR20\":\"Denizli\",\"TR21\":\"Diyarbak\u0131r\",\"TR22\":\"Edirne\",\"TR23\":\"Elaz\u0131\u011f\",\"TR24\":\"Erzincan\",\"TR25\":\"Erzurum\",\"TR26\":\"Eski\u015fehir\",\"TR27\":\"Gaziantep\",\"TR28\":\"Giresun\",\"TR29\":\"G\u00fcm\u00fc\u015fhane\",\"TR30\":\"Hakkari\",\"TR31\":\"Hatay\",\"TR32\":\"Isparta\",\"TR33\":\"\u0130\u00e7el\",\"TR34\":\"\u0130stanbul\",\"TR35\":\"\u0130zmir\",\"TR36\":\"Kars\",\"TR37\":\"Kastamonu\",\"TR38\":\"Kayseri\",\"TR39\":\"K\u0131rklareli\",\"TR40\":\"K\u0131r\u015fehir\",\"TR41\":\"Kocaeli\",\"TR42\":\"Konya\",\"TR43\":\"K\u00fctahya\",\"TR44\":\"Malatya\",\"TR45\":\"Manisa\",\"TR46\":\"Kahramanmara\u015f\",\"TR47\":\"Mardin\",\"TR48\":\"Mu\u011fla\",\"TR49\":\"Mu\u015f\",\"TR50\":\"Nev\u015fehir\",\"TR51\":\"Ni\u011fde\",\"TR52\":\"Ordu\",\"TR53\":\"Rize\",\"TR54\":\"Sakarya\",\"TR55\":\"Samsun\",\"TR56\":\"Siirt\",\"TR57\":\"Sinop\",\"TR58\":\"Sivas\",\"TR59\":\"Tekirda\u011f\",\"TR60\":\"Tokat\",\"TR61\":\"Trabzon\",\"TR62\":\"Tunceli\",\"TR63\":\"\u015eanl\u0131urfa\",\"TR64\":\"U\u015fak\",\"TR65\":\"Van\",\"TR66\":\"Yozgat\",\"TR67\":\"Zonguldak\",\"TR68\":\"Aksaray\",\"TR69\":\"Bayburt\",\"TR70\":\"Karaman\",\"TR71\":\"K\u0131r\u0131kkale\",\"TR72\":\"Batman\",\"TR73\":\"\u015e\u0131rnak\",\"TR74\":\"Bart\u0131n\",\"TR75\":\"Ardahan\",\"TR76\":\"I\u011fd\u0131r\",\"TR77\":\"Yalova\",\"TR78\":\"Karab\u00fck\",\"TR79\":\"Kilis\",\"TR80\":\"Osmaniye\",\"TR81\":\"D\u00fczce\"},\"TZ\":{\"TZ01\":\"Arusha\",\"TZ02\":\"Dar es Salaam\",\"TZ03\":\"Dodoma\",\"TZ04\":\"Iringa\",\"TZ05\":\"Kagera\",\"TZ06\":\"Pemba North\",\"TZ07\":\"Zanzibar North\",\"TZ08\":\"Kigoma\",\"TZ09\":\"Kilimanjaro\",\"TZ10\":\"Pemba South\",\"TZ11\":\"Zanzibar South\",\"TZ12\":\"Lindi\",\"TZ13\":\"Mara\",\"TZ14\":\"Mbeya\",\"TZ15\":\"Zanzibar West\",\"TZ16\":\"Morogoro\",\"TZ17\":\"Mtwara\",\"TZ18\":\"Mwanza\",\"TZ19\":\"Coast\",\"TZ20\":\"Rukwa\",\"TZ21\":\"Ruvuma\",\"TZ22\":\"Shinyanga\",\"TZ23\":\"Singida\",\"TZ24\":\"Tabora\",\"TZ25\":\"Tanga\",\"TZ26\":\"Manyara\",\"TZ27\":\"Geita\",\"TZ28\":\"Katavi\",\"TZ29\":\"Njombe\",\"TZ30\":\"Simiyu\"},\"LK\":[],\"SE\":[],\"US\":{\"AL\":\"Alabama\",\"AK\":\"Alaska\",\"AZ\":\"Arizona\",\"AR\":\"Arkansas\",\"CA\":\"California\",\"CO\":\"Colorado\",\"CT\":\"Connecticut\",\"DE\":\"Delaware\",\"DC\":\"District Of Columbia\",\"FL\":\"Florida\",\"GA\":\"Georgia\",\"HI\":\"Hawaii\",\"ID\":\"Idaho\",\"IL\":\"Illinois\",\"IN\":\"Indiana\",\"IA\":\"Iowa\",\"KS\":\"Kansas\",\"KY\":\"Kentucky\",\"LA\":\"Louisiana\",\"ME\":\"Maine\",\"MD\":\"Maryland\",\"MA\":\"Massachusetts\",\"MI\":\"Michigan\",\"MN\":\"Minnesota\",\"MS\":\"Mississippi\",\"MO\":\"Missouri\",\"MT\":\"Montana\",\"NE\":\"Nebraska\",\"NV\":\"Nevada\",\"NH\":\"New Hampshire\",\"NJ\":\"New Jersey\",\"NM\":\"New Mexico\",\"NY\":\"New York\",\"NC\":\"North Carolina\",\"ND\":\"North Dakota\",\"OH\":\"Ohio\",\"OK\":\"Oklahoma\",\"OR\":\"Oregon\",\"PA\":\"Pennsylvania\",\"RI\":\"Rhode Island\",\"SC\":\"South Carolina\",\"SD\":\"South Dakota\",\"TN\":\"Tennessee\",\"TX\":\"Texas\",\"UT\":\"Utah\",\"VT\":\"Vermont\",\"VA\":\"Virginia\",\"WA\":\"Washington\",\"WV\":\"West Virginia\",\"WI\":\"Wisconsin\",\"WY\":\"Wyoming\",\"AA\":\"Armed Forces (AA)\",\"AE\":\"Armed Forces (AE)\",\"AP\":\"Armed Forces (AP)\"},\"VN\":[],\"YT\":[],\"ZA\":{\"EC\":\"Eastern Cape\",\"FS\":\"Free State\",\"GP\":\"Gauteng\",\"KZN\":\"KwaZulu-Natal\",\"LP\":\"Limpopo\",\"MP\":\"Mpumalanga\",\"NC\":\"Northern Cape\",\"NW\":\"North West\",\"WC\":\"Western Cape\"}}",
+                "i18n_select_state_text": "Select an option\u2026",
+                "i18n_no_matches": "No matches found",
+                "i18n_ajax_error": "Loading failed",
+                "i18n_input_too_short_1": "Please enter 1 or more characters",
+                "i18n_input_too_short_n": "Please enter %qty% or more characters",
+                "i18n_input_too_long_1": "Please delete 1 character",
+                "i18n_input_too_long_n": "Please delete %qty% characters",
+                "i18n_selection_too_long_1": "You can only select 1 item",
+                "i18n_selection_too_long_n": "You can only select %qty% items",
+                "i18n_load_more": "Loading more results\u2026",
+                "i18n_searching": "Searching\u2026"
+            };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/frontend/country-select.min.js?ver=3.7.0'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var wc_address_i18n_params = {
+                "locale": "{\"AE\":{\"postcode\":{\"required\":false,\"hidden\":true},\"state\":{\"required\":false}},\"AF\":{\"state\":{\"required\":false}},\"AO\":{\"postcode\":{\"required\":false,\"hidden\":true},\"state\":{\"label\":\"Province\"}},\"AT\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"AU\":{\"city\":{\"label\":\"Suburb\"},\"postcode\":{\"label\":\"Postcode\"},\"state\":{\"label\":\"State\"}},\"AX\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"BD\":{\"postcode\":{\"required\":false},\"state\":{\"label\":\"District\"}},\"BE\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false,\"label\":\"Province\"}},\"BH\":{\"postcode\":{\"required\":false},\"state\":{\"required\":false}},\"BI\":{\"state\":{\"required\":false}},\"BO\":{\"postcode\":{\"required\":false,\"hidden\":true}},\"BS\":{\"postcode\":{\"required\":false,\"hidden\":true}},\"CA\":{\"postcode\":{\"label\":\"Postal code\"},\"state\":{\"label\":\"Province\"}},\"CH\":{\"postcode\":{\"priority\":65},\"state\":{\"label\":\"Canton\",\"required\":false}},\"CL\":{\"city\":{\"required\":true},\"postcode\":{\"required\":false},\"state\":{\"label\":\"Region\"}},\"CN\":{\"state\":{\"label\":\"Province\"}},\"CO\":{\"postcode\":{\"required\":false}},\"CZ\":{\"state\":{\"required\":false}},\"DE\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"DK\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"EE\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"FI\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"FR\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"GP\":{\"state\":{\"required\":false}},\"GF\":{\"state\":{\"required\":false}},\"GR\":{\"state\":{\"required\":false}},\"HK\":{\"postcode\":{\"required\":false},\"city\":{\"label\":\"Town \\\/ District\"},\"state\":{\"label\":\"Region\"}},\"HU\":{\"state\":{\"label\":\"County\"}},\"ID\":{\"state\":{\"label\":\"Province\"}},\"IE\":{\"postcode\":{\"required\":false,\"label\":\"Eircode\"},\"state\":{\"label\":\"County\"}},\"IS\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"IL\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"IM\":{\"state\":{\"required\":false}},\"IT\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":true,\"label\":\"Province\"}},\"JP\":{\"postcode\":{\"priority\":65},\"state\":{\"label\":\"Prefecture\",\"priority\":66},\"city\":{\"priority\":67},\"address_1\":{\"priority\":68},\"address_2\":{\"priority\":69}},\"KR\":{\"state\":{\"required\":false}},\"KW\":{\"state\":{\"required\":false}},\"LV\":{\"state\":{\"label\":\"Municipality\",\"required\":false}},\"LB\":{\"state\":{\"required\":false}},\"MQ\":{\"state\":{\"required\":false}},\"MT\":{\"state\":{\"required\":false}},\"MZ\":{\"postcode\":{\"required\":false,\"hidden\":true},\"state\":{\"label\":\"Province\"}},\"NL\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false,\"label\":\"Province\"}},\"NG\":{\"postcode\":{\"label\":\"Postcode\",\"required\":false,\"hidden\":true},\"state\":{\"label\":\"State\"}},\"NZ\":{\"postcode\":{\"label\":\"Postcode\"},\"state\":{\"required\":false,\"label\":\"Region\"}},\"NO\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"NP\":{\"state\":{\"label\":\"State \\\/ Zone\"},\"postcode\":{\"required\":false}},\"PL\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"PT\":{\"state\":{\"required\":false}},\"RE\":{\"state\":{\"required\":false}},\"RO\":{\"state\":{\"label\":\"County\",\"required\":true}},\"RS\":{\"state\":{\"required\":false,\"hidden\":true}},\"SG\":{\"state\":{\"required\":false},\"city\":{\"required\":false}},\"SK\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"SI\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"SR\":{\"postcode\":{\"required\":false,\"hidden\":true}},\"ES\":{\"postcode\":{\"priority\":65},\"state\":{\"label\":\"Province\"}},\"LI\":{\"postcode\":{\"priority\":65},\"state\":{\"label\":\"Municipality\",\"required\":false}},\"LK\":{\"state\":{\"required\":false}},\"LU\":{\"state\":{\"required\":false}},\"MD\":{\"state\":{\"label\":\"Municipality \\\/ District\"}},\"SE\":{\"postcode\":{\"priority\":65},\"state\":{\"required\":false}},\"TR\":{\"postcode\":{\"priority\":65},\"state\":{\"label\":\"Province\"}},\"UG\":{\"postcode\":{\"required\":false,\"hidden\":true},\"city\":{\"label\":\"Town \\\/ Village\",\"required\":true},\"state\":{\"label\":\"District\",\"required\":true}},\"US\":{\"postcode\":{\"label\":\"ZIP\"},\"state\":{\"label\":\"State\"}},\"GB\":{\"postcode\":{\"label\":\"Postcode\"},\"state\":{\"label\":\"County\",\"required\":false}},\"ST\":{\"postcode\":{\"required\":false,\"hidden\":true},\"state\":{\"label\":\"District\"}},\"VN\":{\"state\":{\"required\":false},\"postcode\":{\"priority\":65,\"required\":false,\"hidden\":false},\"address_2\":{\"required\":false,\"hidden\":true}},\"WS\":{\"postcode\":{\"required\":false,\"hidden\":true}},\"YT\":{\"state\":{\"required\":false}},\"ZA\":{\"state\":{\"label\":\"Province\"}},\"ZW\":{\"postcode\":{\"required\":false,\"hidden\":true}},\"default\":{\"first_name\":{\"label\":\"First name\",\"required\":true,\"class\":[\"form-row-first\"],\"autocomplete\":\"given-name\",\"priority\":10},\"last_name\":{\"label\":\"Last name\",\"required\":true,\"class\":[\"form-row-last\"],\"autocomplete\":\"family-name\",\"priority\":20},\"company\":{\"label\":\"Company name\",\"class\":[\"form-row-wide\"],\"autocomplete\":\"organization\",\"priority\":30,\"required\":false},\"country\":{\"type\":\"country\",\"label\":\"Country\",\"required\":true,\"class\":[\"form-row-wide\",\"address-field\",\"update_totals_on_change\"],\"autocomplete\":\"country\",\"priority\":40},\"address_1\":{\"label\":\"Street address\",\"placeholder\":\"House number and street name\",\"required\":true,\"class\":[\"form-row-wide\",\"address-field\"],\"autocomplete\":\"address-line1\",\"priority\":50},\"address_2\":{\"placeholder\":\"Apartment, suite, unit etc. (optional)\",\"class\":[\"form-row-wide\",\"address-field\"],\"autocomplete\":\"address-line2\",\"priority\":60,\"required\":false},\"city\":{\"label\":\"Town \\\/ City\",\"required\":true,\"class\":[\"form-row-wide\",\"address-field\"],\"autocomplete\":\"address-level2\",\"priority\":70},\"state\":{\"type\":\"state\",\"label\":\"State \\\/ County\",\"required\":true,\"class\":[\"form-row-wide\",\"address-field\"],\"validate\":[\"state\"],\"autocomplete\":\"address-level1\",\"priority\":80},\"postcode\":{\"label\":\"Postcode \\\/ ZIP\",\"required\":true,\"class\":[\"form-row-wide\",\"address-field\"],\"validate\":[\"postcode\"],\"autocomplete\":\"postal-code\",\"priority\":90}}}",
+                "locale_fields": "{\"address_1\":\"#billing_address_1_field, #shipping_address_1_field\",\"address_2\":\"#billing_address_2_field, #shipping_address_2_field\",\"state\":\"#billing_state_field, #shipping_state_field, #calc_shipping_state_field\",\"postcode\":\"#billing_postcode_field, #shipping_postcode_field, #calc_shipping_postcode_field\",\"city\":\"#billing_city_field, #shipping_city_field, #calc_shipping_city_field\"}",
+                "i18n_required_text": "required",
+                "i18n_optional_text": "optional"
+            };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/frontend/address-i18n.min.js?ver=3.7.0'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var wc_cart_params = {
+                "ajax_url": "\/shop1\/wp-admin\/admin-ajax.php",
+                "wc_ajax_url": "\/shop1\/?wc-ajax=%%endpoint%%",
+                "update_shipping_method_nonce": "58ef72ff71",
+                "apply_coupon_nonce": "cf49a796d4",
+                "remove_coupon_nonce": "dfc7036e7c"
+            };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/frontend/cart.min.js?ver=3.7.0'></script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/selectWoo/selectWoo.full.min.js?ver=1.0.6'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var pwsL10n = {
+                "unknown": "Password strength unknown",
+                "short": "Very weak",
+                "bad": "Weak",
+                "good": "Medium",
+                "strong": "Strong",
+                "mismatch": "Mismatch"
+            };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='https://jevelin.shufflehound.com/shop1/wp-admin/js/password-strength-meter.min.js?ver=5.2.5'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var wc_password_strength_meter_params = {
+                "min_password_strength": "3",
+                "stop_checkout": "",
+                "i18n_password_error": "Please enter a stronger password.",
+                "i18n_password_hint": "Hint: The password should be at least twelve characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! \" ? $ % ^ & )."
+            };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/frontend/password-strength-meter.min.js?ver=3.7.0'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var wc_cart_fragments_params = {
+                "ajax_url": "\/shop1\/wp-admin\/admin-ajax.php",
+                "wc_ajax_url": "\/shop1\/?wc-ajax=%%endpoint%%",
+                "cart_hash_key": "wc_cart_hash_d36f4bd78ed64f2d668ba29c8488034c",
+                "fragment_name": "wc_fragments_d36f4bd78ed64f2d668ba29c8488034c",
+                "request_timeout": "5000"
+            };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=3.7.0'></script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-includes/js/jquery/ui/effect.min.js?ver=1.11.4'></script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-content/themes/jevelin/js/plugins/bootstrap.min.js?ver=3.3.4'></script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-includes/js/wp-embed.min.js?ver=5.2.5'></script>
+        <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/wp-includes/js/comment-reply.min.js?ver=5.2.5'></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                "use strict";
+            });
+        </script>
+
+      
+
+       
+</body>
+</html>
