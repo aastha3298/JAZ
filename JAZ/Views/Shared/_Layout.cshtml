@@ -1,10 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Spaces.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
-<body >
+<body>
     <div class="container body-content">
-          @RenderBody()
+        @RenderBody()
+        @RenderSection("scripts", required: false)
         <hr />
         <footer>
             <ul class="nav navbar-nav">
@@ -15,6 +20,8 @@
         </footer>
     </div>
 
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 

@@ -15,6 +15,7 @@ namespace JAZ.Controllers
         public async Task<ActionResult> Index()
         {
             var products = db.Products.Include(p => p.Product_Category1);
+            ViewBag.id = db.Users.AsEnumerable().Where(x => x.Email.Equals(User.Identity.Name)).Select(x => x.ID).FirstOrDefault();
             return View(await products.ToListAsync());
         }
 

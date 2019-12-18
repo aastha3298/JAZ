@@ -18,7 +18,7 @@ namespace JAZ.Controllers
         // GET: Users
         public async Task<ActionResult> Index()
         {
-            var users = db.Users.Include(u => u.City).Include(u => u.Country);
+            var users = db.Users.Include(u => u.City1).Include(u => u.Country1);
             return View(await users.ToListAsync());
         }
 
@@ -87,17 +87,18 @@ namespace JAZ.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Username,First_Name,Last_Name,Email,Phone_Number,Password,Role,StAddress,City,Province,PostalCode,Country")] User user)
+        public ActionResult Edit([Bind(Include = "ID,Username,First_Name,Last_Name,Email,Phone_Number,Password,Role,StAddress,City,Province,PostalCode,Country")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                 db.SaveChangesAsync();
+                return RedirectToAction("Index","Home");
             }
-            ViewBag.City = new SelectList(db.Cities, "City_Code", "City_Name", user.City);
-            ViewBag.Country = new SelectList(db.Countries, "Country_Code", "Country_Name", user.Country);
-            return View(user);
+            ViewBag.City = new SelectList(db.Cities, "City_Code", "City_Name", user.City).Distinct();
+            ViewBag.Country = new SelectList(db.Countries, "Country_Code", "Country_Name", user.Country).Distinct();
+            var products = db.Products.Include(p => p.Product_Category1);
+            return View("~/Views/Home/Index.cshtml",products);
         }
 
         // GET: Users/Delete/5

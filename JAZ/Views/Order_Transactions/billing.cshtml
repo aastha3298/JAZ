@@ -944,7 +944,7 @@
                             <div class="sh-table-cell sh-group">
 
                                 <div class="header-logo sh-group-equal">
-                                    <a href="https://jevelin.shufflehound.com/shop1/" class="header-logo-container sh-table-small">
+                                    <a href="" class="header-logo-container sh-table-small">
 
                                         <div class="sh-table-cell">
                                             <img class="sh-standard-logo" src="//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Logo_shop.png" alt="Jevelin Theme Shop Demo" />
@@ -963,7 +963,7 @@
                                         <ul class="sh-nav">
 
                                             <li class="menu-item sh-nav-cart sh-nav-special sh-header-builder-main-element-cart">
-                                                <a href="https://jevelin.shufflehound.com/shop1/cart/">
+                                                <a href="">
                                                     <div class="sh-nav-cart-content">
                                                         <i class="icon-basket sh-header-builder-main-element-icon"></i>
                                                         <div class="sh-header-cart-count cart-icon sh-group">
@@ -1003,7 +1003,7 @@
 
                     <div class="container sh-nav-container">
                         <div class="header-mobile-search">
-                            <form role="search" method="get" class="header-mobile-form" action="https://jevelin.shufflehound.com/shop1/">
+                            <form role="search" method="get" class="header-mobile-form" action="">
                                 <input class="header-mobile-form-input" type="text" placeholder="Search here.." value="" name="s" required />
                                 <button type="submit" class="header-mobile-form-submit">
                                     <i class="icon-magnifier"></i>
@@ -1033,7 +1033,7 @@
                             <div class="sh-table-cell sh-group">
 
                                 <div class="header-logo sh-group-equal">
-                                    <a href="https://jevelin.shufflehound.com/shop1/" class="header-logo-container sh-table-small">
+                                    <a href="" class="header-logo-container sh-table-small">
 
                                         <div class="sh-table-cell">
                                             <img class="sh-standard-logo" src="//cdn.jevelin.shufflehound.com/wp-content/uploads/sites/9/2016/11/Logo_shop.png" alt="Jevelin Theme Shop Demo" />
@@ -1055,7 +1055,7 @@
                                             {
 
                                                 Html.AntiForgeryToken();
-                                                <li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-11"><a href="@Url.Action("Edit", "Users")">My Account</a></li>
+                                                <li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-11"><a href="@Url.Action("Edit", "Users",new { id = Model.User_ID})">My Account</a></li>
                                                 <li id="menu-item-8" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-8"><a href="@Url.Action("Logout", "Accounts")">LogOut</a></li>
 
 
@@ -1071,11 +1071,7 @@
                                                 <a href="@Url.Action("Index","Shopping_Cart")">
                                                     <div class="sh-nav-cart-content">
                                                         <i class="icon-basket sh-header-builder-main-element-icon"></i>
-                                                        <div class="sh-header-cart-count cart-icon sh-group">
-
-                                                            <span>0</span>
-
-                                                        </div>
+                                                     
                                                     </div>
 
                                                 </a>
@@ -1104,7 +1100,7 @@
                                 <div class="line-test">
                                     <div class="container">
 
-                                        <form method="get" class="sh-header-search-form" action="https://jevelin.shufflehound.com/shop1/">
+                                        <form method="get" class="sh-header-search-form" action="">
                                             <input type="search" class="sh-header-search-input" placeholder="Search Here.." value="" name="s" required />
                                             <button type="submit" class="sh-header-search-submit">
                                                 <i class="icon-magnifier"></i>
@@ -1138,7 +1134,7 @@
                     <div class="title-level sh-table-cell">
 
                         <div id="breadcrumbs" class="breadcrumb-trail breadcrumbs">
-                            <span class="item-home"><a class="bread-link bread-home" href="https://jevelin.shufflehound.com/shop1/" title="Home">Home</a></span><span class="separator"> &gt; </span><span class="item-current item-2741"><span title="Cart"> Cart</span></span><span class="separator"> &gt; </span><span class="item-current item-2741"><span title="transaction"> Transaction</span></span>
+                            <span class="item-home"><a class="bread-link bread-home" href="@Url.Action("Index","Home")" title="Home">Home</a></span><span class="separator"> &gt; </span><span class="item-current item-2741"><span title="Cart"> Cart</span></span><span class="separator"> &gt; </span><span class="item-current item-2741"><span title="transaction"> Transaction</span></span>
                         </div>
                     </div>
 
@@ -1215,7 +1211,7 @@
                             <div class="col-md-12">
                                 <div class="card shadow-soft border p-4">
                                     <div class="row">
-                                        <div class="col-md-12"><h3>Total Amount:  @ViewBag.data</h3></div>
+                                        <div class="col-md-12"><h3>Total Amount:  $@ViewBag.data</h3></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">

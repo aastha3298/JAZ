@@ -17,13 +17,13 @@ namespace JAZ.Controllers
 
         // GET: Shopping_Cart
         [Authorize]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
            
                 var list= db.Shopping_Cart.AsEnumerable().Where(x => x.User.Email.Equals(User.Identity.Name));
             ViewBag.data = list.Sum(x => x.Product.Product_Price);
            var shopping_Cart = db.Shopping_Cart.Include(s => s.Product).Include(s => s.User);
-            return View(await shopping_Cart.ToListAsync());
+            return View(list);
         }
 
         // GET: Summary
